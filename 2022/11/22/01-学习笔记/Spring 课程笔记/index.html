@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Spring 课程笔记 | 以码入道</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="课程概述课程主要关注的三个内容    Spring framework Spring boot Spring cloud  第一章 初识 Spring编写第一个 Spring 程序，使用 spring 官网提供的 spring initializr 工具，填写对应的配置后，即可生成一个 spring 程序的骨架。https:&#x2F;&#x2F;start.spring.io 这里添加了 web 和 spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring 课程笔记">
+<meta property="og:url" content="https://xiaosong97.github.io/2022/11/22/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="以码入道">
+<meta property="og:description" content="课程概述课程主要关注的三个内容    Spring framework Spring boot Spring cloud  第一章 初识 Spring编写第一个 Spring 程序，使用 spring 官网提供的 spring initializr 工具，填写对应的配置后，即可生成一个 spring 程序的骨架。https:&#x2F;&#x2F;start.spring.io 这里添加了 web 和 spring">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaosong97.github.io/images/hellospring-jar.png">
+<meta property="article:published_time" content="2022-11-22T06:01:44.000Z">
+<meta property="article:modified_time" content="2022-11-22T06:01:44.000Z">
+<meta property="article:author" content="qusong">
+<meta property="article:tag" content="Spring">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaosong97.github.io/images/hellospring-jar.png">
+  
+    <link rel="alternate" href="/atom.xml" title="以码入道" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">以码入道</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">程序员练级日常</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://xiaosong97.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-01-学习笔记/Spring 课程笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/22/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2022-11-22T06:01:44.000Z" itemprop="datePublished">2022-11-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Spring 课程笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="课程概述"><a href="#课程概述" class="headerlink" title="课程概述"></a>课程概述</h1><p>课程主要关注的三个内容  </p>
+<ul>
+<li>Spring framework</li>
+<li>Spring boot</li>
+<li>Spring cloud</li>
+</ul>
+<h1 id="第一章-初识-Spring"><a href="#第一章-初识-Spring" class="headerlink" title="第一章 初识 Spring"></a>第一章 初识 Spring</h1><p>编写第一个 Spring 程序，使用 spring 官网提供的 spring initializr 工具，填写对应的配置后，即可生成一个 spring 程序的骨架。<br><a target="_blank" rel="noopener" href="https://start.spring.io/">https://start.spring.io</a></p>
+<p>这里添加了 web 和 spring actuator 两个依赖。</p>
+<p>用 idea 打开后，直接在生成的 springbootapplication 类中进行修改，添加 restcontroller 注解，并添加一个 hello path 的 requestMapping 即可完成一个最简单的 spring 程序。  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloSpringApplication</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		SpringApplication.run(HelloSpringApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@RequestMapping(&quot;/hello&quot;)</span></span><br><span class="line">	<span class="keyword">public</span> String <span class="title function_">hello</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;Hello Spring&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以直接运行在内嵌的 tomcat 容器中。</p>
+<p>访问 <code>curl http://localhost:8080/hello</code> 即可看到运行结果 <code>Hello Spring%</code><br>访问 <code>curl http://localhost:8080/actuator/health</code> 可看到节点的健康状态 <code>&#123;&quot;status&quot;:&quot;UP&quot;&#125;% </code>  </p>
+<p>还可以使用 mvn clean package -Dmaven.test.skip 命令，将 spring 程序打包成 jar 文件<br><img src="/../../images/hellospring-jar.png" alt="生成的jar包"><br>其中，较大的那个 jar 包是 spring 自动将程序所需的依赖也打包的结果。因此可以直接使用 <code>java -jar</code> 命令运行<br><code>java -jar target/hello-spring-0.0.1-SNAPSHOT.jar</code>  </p>
+<p>假如因为某些原因无法使用 spring-boot-starter-parent 作为项目的 parent，那么只需要按下面这样修改下 pom 文件即可  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">  			<span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">  				<span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">  					<span class="tag">&lt;<span class="name">goal</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">  				<span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">  			<span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>即，添加一个 dependencyManagement 标签，将 spring-boot-starter-parent 完整的导入进来，并在下面的 spring-boot-maven-plugin 添加配置，声明在 repackage 的时候引入。</p>
+<h1 id="第二章-JDBC-必知必会"><a href="#第二章-JDBC-必知必会" class="headerlink" title="第二章 JDBC 必知必会"></a>第二章 JDBC 必知必会</h1><h2 id="如何配置单数据源"><a href="#如何配置单数据源" class="headerlink" title="如何配置单数据源"></a>如何配置单数据源</h2><p>构建项目骨架，引入的依赖有</p>
+<ul>
+<li>Actuator 监控状态</li>
+<li>H2 数据库</li>
+<li>JDBC 操作数据库</li>
+<li>Lombok 提供一些注解</li>
+<li>Web 以 web 形式启动，方便访问一些 Actuator 的一些 url</li>
+</ul>
+<p>showConnection  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DatasourcedemoApplication</span> <span class="keyword">implements</span> <span class="title class_">CommandLineRunner</span> &#123;</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> DataSource dataSource;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> JdbcTemplate jdbcTemplate;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		SpringApplication.run(DatasourcedemoApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">(String... args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		showConnection();</span><br><span class="line">		showData();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">showData</span><span class="params">()</span> &#123;</span><br><span class="line">		jdbcTemplate.queryForList(<span class="string">&quot;SELECT * FROM FOO&quot;</span>)</span><br><span class="line">				.forEach(row -&gt; log.info(row.toString()));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">showConnection</span><span class="params">()</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">		log.info(dataSource.toString());</span><br><span class="line">		<span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> dataSource.getConnection();</span><br><span class="line">		log.info(conn.toString());</span><br><span class="line">		conn.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行后，可以看到 spring boot 自动配置了数据源 HikariDataSource，并连接到内存数据库 h2 <code>HikariProxyConnection@395257482 wrapping conn0: url=jdbc:h2:mem:9c9048f5-ff8c-48fd-9f1d-837bd639a404 user=SA</code>  </p>
+<p>可以打开浏览器，访问 <a target="_blank" rel="noopener" href="http://localhost:8080/actuator/beans">http://localhost:8080/actuator/beans</a> 可以看到所有的 Bean，但是 web 模式下，actuator 默认暴露的 endpoint 只有 health，参见：<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#actuator.endpoints.exposing%E3%80%82">https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#actuator.endpoints.exposing。</a>  </p>
+<p>因此，需要先打开 beans 的暴露，在 application.properties 中添加配置 <code>management.endpoints.web.exposure.include=health,beans </code> 即可。 </p>
+<p>resources 目录下新建的 schema.sql 和 data.sql 会被 Spring Boot 自动加载，然后 showData 的代码会打印出数据库中的两行由 data.sql 插入的数据。  </p>
+<p>数据源相关配置属性<br>通用  </p>
+<ul>
+<li>spring.datasource.url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost&#x2F;test</li>
+<li>spring.datasource.username&#x3D;dbuser</li>
+<li>spring.datasource.password&#x3D;dbpass</li>
+<li>spring.datasource.driver-class-name&#x3D;com.mysql.jdbc.Driver(可选)</li>
+</ul>
+<p>初始化内嵌数据库  </p>
+<ul>
+<li>spring.datasource.initialization-mode&#x3D;embedded（默认值，只初始化内存数据库）|always（总是初始化数据库）|never（不初始化数据库）</li>
+<li>spring.datasource.schema与spring.datasource.data确定初始化SQL文件</li>
+<li>spring.datasource.platform&#x3D;hsqldb | h2 | oracle | mysql | postgresql(与前者对应）</li>
+</ul>
+<p>演示 demo 中的 application.properties 的配置  </p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">management.endpoints.web.exposure.include</span>=<span class="string">*</span></span><br><span class="line"><span class="attr">spring.output.ansi.enabled</span>=<span class="string">ALWAYS</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring.datasource.url</span>=<span class="string">jdbc:h2:mem:testdb</span></span><br><span class="line"><span class="attr">spring.datasource.username</span>=<span class="string">sa</span></span><br><span class="line"><span class="attr">spring.datasource.password</span>=<span class="string"></span></span><br><span class="line"><span class="attr">spring.datasource.hikari.maximumPoolSize</span>=<span class="string">5</span></span><br><span class="line"><span class="attr">spring.datasource.hikari.minimumIdle</span>=<span class="string">5</span></span><br><span class="line"><span class="attr">spring.datasource.hikari.idleTimeout</span>=<span class="string">600000</span></span><br><span class="line"><span class="attr">spring.datasource.hikari.connectionTimeout</span>=<span class="string">30000</span></span><br><span class="line"><span class="attr">spring.datasource.hikari.maxLifetime</span>=<span class="string">1800000</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="配置多个数据源"><a href="#配置多个数据源" class="headerlink" title="配置多个数据源"></a>配置多个数据源</h2><h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>不同数据源的配置要分开</li>
+<li>关注每次使用的资源<ul>
+<li>有多个 DataSource 时系统如何判断</li>
+<li>对应的设施（事务、ORM 等）如何选择 DataSource</li>
+</ul>
+</li>
+</ul>
+<h3 id="配置方式"><a href="#配置方式" class="headerlink" title="配置方式"></a>配置方式</h3><p>方法一 手工配置两组 DataSource 及相关内容<br>方法二 与 Spring Boot 协同工作  </p>
+<ul>
+<li>配置 @Primary 类型的 Bean: 配置了该注解的 DataSource 作为主要的 DataSource，Spring Boot 的配置将围绕该 DataSource 进行</li>
+<li>排除 Spring Boot 的自动配置<ul>
+<li>DataSourceAutoConfiguration</li>
+<li>DataSourceTransactionManagerAutoConfiguration</li>
+<li>JdbcTemplateAutoConfiguration</li>
+</ul>
+</li>
+</ul>
+<h3 id="操作记录"><a href="#操作记录" class="headerlink" title="操作记录"></a>操作记录</h3><p>构建项目 multidatasourcedemo ，引入的依赖有</p>
+<ul>
+<li>Actuator 监控状态</li>
+<li>H2 数据库</li>
+<li>JDBC 操作数据库</li>
+<li>Lombok 提供一些注解</li>
+<li>Web 以 web 形式启动，方便访问一些 Actuator 的一些 url</li>
+</ul>
+<p>application.properties 配置如下  </p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">management.endpoints.web.exposure.include</span>=<span class="string">*</span></span><br><span class="line"><span class="attr">spring.output.ansi.enabled</span>=<span class="string">ALWAYS</span></span><br><span class="line"></span><br><span class="line"><span class="attr">foo.datasource.url</span>=<span class="string">jdbc:h2:mem:foo</span></span><br><span class="line"><span class="attr">foo.datasource.username</span>=<span class="string">sa</span></span><br><span class="line"><span class="attr">foo.datasource.password</span>=<span class="string"></span></span><br><span class="line"></span><br><span class="line"><span class="attr">bar.datasource.url</span>=<span class="string">jdbc:h2:mem:bar</span></span><br><span class="line"><span class="attr">bar.datasource.username</span>=<span class="string">sa</span></span><br><span class="line"><span class="attr">bar.datasource.password</span>=<span class="string"></span></span><br></pre></td></tr></table></figure>
+
+<p>排除 Spring boot 自动配置  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication(exclude = &#123;DataSourceAutoConfiguration.class,</span></span><br><span class="line"><span class="meta">        DataSourceTransactionManagerAutoConfiguration.class,</span></span><br><span class="line"><span class="meta">        JdbcTemplateAutoConfiguration.class&#125;)</span></span><br></pre></td></tr></table></figure>
+
+<p>配置数据源  </p>
+<ol>
+<li>配置 DataSourceProperties</li>
+<li>配置 DataSource</li>
+<li>配置 PlatformTransactionManager</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(&quot;foo.datasource&quot;)</span></span><br><span class="line"><span class="keyword">public</span> DataSourceProperties <span class="title function_">fooDataSourceProperties</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">DataSourceProperties</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> DataSource <span class="title function_">fooDataSource</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">DataSourceProperties</span> <span class="variable">dataSourceProperties</span> <span class="operator">=</span> fooDataSourceProperties();</span><br><span class="line">    log.info(<span class="string">&quot;foo datasource: &#123;&#125;&quot;</span>, dataSourceProperties.getUrl());</span><br><span class="line">    <span class="keyword">return</span> dataSourceProperties.initializeDataSourceBuilder().build();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@Resource</span></span><br><span class="line"><span class="keyword">public</span> PlatformTransactionManager <span class="title function_">fooTxManager</span><span class="params">(DataSource fooDataSource)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">DataSourceTransactionManager</span>(fooDataSource);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="HikariCP"><a href="#HikariCP" class="headerlink" title="HikariCP"></a>HikariCP</h2><p>性能很快：字节码优化和很多的小改进的累积  </p>
+<ul>
+<li>Spring 1.x 默认使用的 Tomcat 连接池，要使用 HikariCP 的话，需要移除 tomcat-jdbc 依赖，配置 <code>spring.datasource.type=com.zaxxer.hikari.HikariDataSource</code>  </li>
+<li>Spring 2.x 默认使用的就是 HikariCP 连接池了，可以直接配置 <code>spring.datasource.hikari.*</code></li>
+</ul>
+<p>HikariCP 常用配置  </p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring.datasource.hikari.maximumPoolSize</span>=<span class="string">5</span></span><br><span class="line"><span class="attr">spring.datasource.hikari.minimumIdle</span>=<span class="string">5</span></span><br><span class="line"><span class="attr">spring.datasource.hikari.idleTimeout</span>=<span class="string">600000</span></span><br><span class="line"><span class="attr">spring.datasource.hikari.connectionTimeout</span>=<span class="string">30000</span></span><br><span class="line"><span class="attr">spring.datasource.hikari.maxLifetime</span>=<span class="string">1800000</span></span><br></pre></td></tr></table></figure>
+<p>官网：<a target="_blank" rel="noopener" href="https://github.com/brettwooldridge/HikariCP">https://github.com/brettwooldridge/HikariCP</a>  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xiaosong97.github.io/2022/11/22/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" data-id="clas37i8g00088qxy1zio1lo0" data-title="Spring 课程笔记" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/11/21/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20IO/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Java IO</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Do/">Do</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/">Learn</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/" rel="tag">IO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Program/" rel="tag">Program</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3/" rel="tag">Python3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode/" rel="tag">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/" rel="tag">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew/" rel="tag">brew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iTerm2/" rel="tag">iTerm2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macOS/" rel="tag">macOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%A0%E7%BB%9F%E6%96%87%E5%8C%96/" rel="tag">传统文化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%87%E4%BB%BD/" rel="tag">备份</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E5%88%92/" rel="tag">计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/IO/" style="font-size: 10px;">IO</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Program/" style="font-size: 10px;">Program</a> <a href="/tags/Python3/" style="font-size: 10px;">Python3</a> <a href="/tags/Spring/" style="font-size: 12.5px;">Spring</a> <a href="/tags/VSCode/" style="font-size: 10px;">VSCode</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/brew/" style="font-size: 10px;">brew</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/iTerm2/" style="font-size: 10px;">iTerm2</a> <a href="/tags/macOS/" style="font-size: 10px;">macOS</a> <a href="/tags/markdown/" style="font-size: 12.5px;">markdown</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/%E4%BC%A0%E7%BB%9F%E6%96%87%E5%8C%96/" style="font-size: 10px;">传统文化</a> <a href="/tags/%E5%A4%87%E4%BB%BD/" style="font-size: 10px;">备份</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E8%AE%A1%E5%88%92/" style="font-size: 17.5px;">计划</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 15px;">读书笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/11/22/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">Spring 课程笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/21/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20IO/">Java IO</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/19/04-%E8%AE%B0%E5%BD%95%E5%A4%87%E5%BF%98/%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9/">待办事项</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/19/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Mac%20%E4%B8%8B%E4%BF%AE%E6%94%B9%20brew%20%E6%BA%90/">Mac 下修改 brew 源</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/19/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/adb%E6%97%A0%E7%BA%BF%E8%BF%9E%E6%8E%A5/">adb无线连接</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 qusong<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

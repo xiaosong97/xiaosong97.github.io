@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>个人编程规范 | 以码入道</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="摘抄的一些编程规范">
+<meta property="og:type" content="article">
+<meta property="og:title" content="个人编程规范">
+<meta property="og:url" content="https://xiaosong97.github.io/2022/11/18/04-%E8%AE%B0%E5%BD%95%E5%A4%87%E5%BF%98/%E4%B8%AA%E4%BA%BA%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/index.html">
+<meta property="og:site_name" content="以码入道">
+<meta property="og:description" content="摘抄的一些编程规范">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-18T09:37:03.000Z">
+<meta property="article:modified_time" content="2022-11-18T09:37:03.000Z">
+<meta property="article:author" content="qusong">
+<meta property="article:tag" content="Program">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="以码入道" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">以码入道</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">程序员练级日常</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://xiaosong97.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-04-记录备忘/个人编程规范" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/18/04-%E8%AE%B0%E5%BD%95%E5%A4%87%E5%BF%98/%E4%B8%AA%E4%BA%BA%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" class="article-date">
+  <time class="dt-published" datetime="2022-11-18T09:37:03.000Z" itemprop="datePublished">2022-11-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      个人编程规范
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>摘抄的一些编程规范</p>
+<span id="more"></span>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>2022年5月12日 下午 初版整理</p>
+<h1 id="1、命名"><a href="#1、命名" class="headerlink" title="1、命名"></a>1、命名</h1><ul>
+<li>命名长度根据作用域选择不同长度，作用域较小的（比如临时变量），可以适当地选择短一些的命名。 </li>
+<li>命名中可以使用一些耳熟能详的缩写 </li>
+<li>借助类的信息简化属性、函数的命名 </li>
+<li>借助函数的信息简化函数参数的命名 </li>
+<li>命名要可读，可搜索。不要用生僻的，不好读的英文单词，不用反直觉的命名，命名要符合项目统一规范 </li>
+<li>接口两种命名方式，采用接口实现类中带后缀 “Impl” 的方式 </li>
+<li>抽象类采用带前缀 “Abstract“ 的方式</li>
+</ul>
+<h1 id="2、注释"><a href="#2、注释" class="headerlink" title="2、注释"></a>2、注释</h1><ul>
+<li>目的是为了让代码更易读懂。内容包括：What、Why、How </li>
+<li>复杂的类和接口，可能还需要写明 How to use </li>
+<li>注释具有维护成本，类和函数一定写注释，尽可能全面详细。函数内部就要相对少些注释。</li>
+</ul>
+<h1 id="3、类、函数的代码行数"><a href="#3、类、函数的代码行数" class="headerlink" title="3、类、函数的代码行数"></a>3、类、函数的代码行数</h1><ul>
+<li>函数代码函数建议不超过 IDE 显示的一个显示屏的垂直高度 </li>
+<li>类的代码行数没有确切的值，需反向判断，当寻找函数时很费劲或者需要实现一个小功能就要引入整个类，此时就说明类的行数过多了</li>
+</ul>
+<h1 id="4、一行代码多长合适？"><a href="#4、一行代码多长合适？" class="headerlink" title="4、一行代码多长合适？"></a>4、一行代码多长合适？</h1><ul>
+<li>建议值：一行代码最长限制为 100 个字符 </li>
+<li>原则：一行代码最长不能超过 IDE 显示的宽度。</li>
+</ul>
+<h1 id="5、函数内部过长时如何优化"><a href="#5、函数内部过长时如何优化" class="headerlink" title="5、函数内部过长时如何优化"></a>5、函数内部过长时如何优化</h1><ul>
+<li>函数较长时，可以用空行分割逻辑上较为独立的代码块 </li>
+<li>每个独立的代码块前可以加上总结性的注释</li>
+</ul>
+<h1 id="6、代码缩进"><a href="#6、代码缩进" class="headerlink" title="6、代码缩进"></a>6、代码缩进</h1><ul>
+<li>不用Tab键，用两格空格代替 </li>
+<li>大括号不用另起一行，和上一条语句放在一起</li>
+</ul>
+<h1 id="7、类中成员排序"><a href="#7、类中成员排序" class="headerlink" title="7、类中成员排序"></a>7、类中成员排序</h1><ul>
+<li>类所属包名 </li>
+<li>罗列 import 引入的依赖，不同依赖按字母顺序从小到大排列 </li>
+<li>类中，先写成员变量：先静态变量，再普通变量；先public，然后protected，再private </li>
+<li>再写成员函数：先静态函数，再普通函数；先public，然后protected，再private</li>
+</ul>
+<h1 id="8、编码技巧"><a href="#8、编码技巧" class="headerlink" title="8、编码技巧"></a>8、编码技巧</h1><ul>
+<li>将复杂的逻辑提炼拆分成函数和类 </li>
+<li>通过拆分成多个函数或将参数封装成对象的方式来处理参数过多的情况 </li>
+<li>函数中不要使用参数来做代码执行逻辑的控制 </li>
+<li>函数设计要职责单一 </li>
+<li>移除过深的嵌套层次，方法包括：去掉多余的 if 或 else 语句，使用 continue、break、return 关键字提前退出嵌套，调整执行顺序来减少嵌套，将部分嵌套逻辑抽象成函数。 </li>
+<li>用字面常量取代魔法数 </li>
+<li>用解释性变量来解释复杂表达式，以此提高代码可读性</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xiaosong97.github.io/2022/11/18/04-%E8%AE%B0%E5%BD%95%E5%A4%87%E5%BF%98/%E4%B8%AA%E4%BA%BA%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" data-id="clas37i8x001j8qxy4xeq3bum" data-title="个人编程规范" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Program/" rel="tag">Program</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/11/18/04-%E8%AE%B0%E5%BD%95%E5%A4%87%E5%BF%98/%E9%BB%84%E5%B8%9D%E9%98%B4%E7%AC%A6%E7%BB%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          黄帝阴符经
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/11/18/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/hexo%20%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">hexo 博客系统使用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Do/">Do</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/">Learn</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/" rel="tag">IO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Program/" rel="tag">Program</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3/" rel="tag">Python3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode/" rel="tag">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/" rel="tag">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew/" rel="tag">brew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iTerm2/" rel="tag">iTerm2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macOS/" rel="tag">macOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%A0%E7%BB%9F%E6%96%87%E5%8C%96/" rel="tag">传统文化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%87%E4%BB%BD/" rel="tag">备份</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E5%88%92/" rel="tag">计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/IO/" style="font-size: 10px;">IO</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Program/" style="font-size: 10px;">Program</a> <a href="/tags/Python3/" style="font-size: 10px;">Python3</a> <a href="/tags/Spring/" style="font-size: 12.5px;">Spring</a> <a href="/tags/VSCode/" style="font-size: 10px;">VSCode</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/brew/" style="font-size: 10px;">brew</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/iTerm2/" style="font-size: 10px;">iTerm2</a> <a href="/tags/macOS/" style="font-size: 10px;">macOS</a> <a href="/tags/markdown/" style="font-size: 12.5px;">markdown</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/%E4%BC%A0%E7%BB%9F%E6%96%87%E5%8C%96/" style="font-size: 10px;">传统文化</a> <a href="/tags/%E5%A4%87%E4%BB%BD/" style="font-size: 10px;">备份</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E8%AE%A1%E5%88%92/" style="font-size: 17.5px;">计划</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 15px;">读书笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/11/22/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">Spring 课程笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/21/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20IO/">Java IO</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/19/04-%E8%AE%B0%E5%BD%95%E5%A4%87%E5%BF%98/%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9/">待办事项</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/19/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Mac%20%E4%B8%8B%E4%BF%AE%E6%94%B9%20brew%20%E6%BA%90/">Mac 下修改 brew 源</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/19/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/adb%E6%97%A0%E7%BA%BF%E8%BF%9E%E6%8E%A5/">adb无线连接</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 qusong<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

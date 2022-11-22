@@ -1,1068 +1,1100 @@
 <!DOCTYPE html>
-
-
-<html lang="zh-CN">
+<html>
+<head>
+  <meta charset="utf-8">
   
+  
+  <title>以码入道</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="以码入道">
+<meta property="og:url" content="https://xiaosong97.github.io/index.html">
+<meta property="og:site_name" content="以码入道">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="qusong">
+<meta property="article:tag" content="Java, Spring, MySQL, 软件工程师, 程序员, 学习">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="以码入道" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
 
-    <head>
-      <meta charset="utf-8" />
-       
-      <meta name="keywords" content="Java, Spring, MySQL, 软件工程师, 程序员, 学习" />
-       
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1"
-      />
-      <title> 以码入道</title>
-  <meta name="generator" content="hexo-theme-ayer">
-      
-      <link rel="shortcut icon" href="/favicon.ico" />
-       
-<link rel="stylesheet" href="/dist/main.css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-      
-<link rel="stylesheet" href="/css/fonts/remixicon.css">
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
-      
-<link rel="stylesheet" href="/css/custom.css">
- 
-      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
-       
- 
-
-      <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
-      />
-      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
-
-      <!-- mermaid -->
-      
-      <style>
-        .swal2-styled.swal2-confirm {
-          font-size: 1.6rem;
-        }
-      </style>
-    </head>
-  </html>
-</html>
-
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 <body>
-  <div id="app">
-    
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">以码入道</a>
+      </h1>
       
-    <main class="content on">
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">程序员练级日常</a>
+        </h2>
       
-<section class="cover">
-    
-  <div class="cover-frame">
-    <div class="bg-box">
-      <img src="/images/cover4.jpg" alt="image frame" />
     </div>
-    <div class="cover-inner text-center text-white">
-      <h1><a href="/">以码入道</a></h1>
-      <div id="subtitle-box">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-        <span id="subtitle"></span>
+          <a class="main-nav-link" href="/">Home</a>
         
-      </div>
-      <div>
+          <a class="main-nav-link" href="/archives">Archives</a>
         
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://xiaosong97.github.io"></form>
       </div>
     </div>
   </div>
-  <div class="cover-learn-more">
-    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
-  </div>
-</section>
+</header>
 
-
-
-<script src="https://cdn.staticfile.org/typed.js/2.0.12/typed.min.js"></script>
-
-
-<!-- Subtitle -->
-
-  <script>
-    try {
-      var typed = new Typed("#subtitle", {
-        strings: ['学而不思则罔，思而不学则殆', '书山有路勤为径，学海无涯苦作舟', '虚其心，实其腹；弱其志，强其骨'],
-        startDelay: 0,
-        typeSpeed: 200,
-        loop: true,
-        backSpeed: 100,
-        showCursor: true
-      });
-    } catch (err) {
-      console.log(err)
-    }
-  </script>
+      <div class="outer">
+        <section id="main">
   
-<div id="main">
-  <section class="outer">
-  
-  
-  
-
-<div class="notice" style="margin-top:50px">
-    <i class="ri-heart-fill"></i>
-    <div class="notice-content" id="broad"></div>
-</div>
-<script type="text/javascript">
-    fetch('https://v1.hitokoto.cn')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById("broad").innerHTML = data.hitokoto;
-        })
-        .catch(console.error)
-</script>
-
-<style>
-    .notice {
-        padding: 20px;
-        border: 1px dashed #e6e6e6;
-        color: #969696;
-        position: relative;
-        display: inline-block;
-        width: 100%;
-        background: #fbfbfb50;
-        border-radius: 10px;
-    }
-
-    .notice i {
-        float: left;
-        color: #999;
-        font-size: 16px;
-        padding-right: 10px;
-        vertical-align: middle;
-        margin-top: -2px;
-    }
-
-    .notice-content {
-        display: initial;
-        vertical-align: middle;
-    }
-</style>
-  
-  <article class="articles">
+    <article id="post-01-学习笔记/Spring 课程笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/22/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2022-11-22T06:01:44.000Z" itemprop="datePublished">2022-11-22</time>
+</a>
     
-    
-    
-    
-    <article
-  id="post-01-学习笔记/Java 学习笔记"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
-    >Java 学习笔记</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2022-11-18T10:02:07.000Z" itemprop="datePublished">2022-11-18</time>
-</a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/Learn/">Learn</a>
   </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>Java 学习笔记</p> 
-      <a class="article-more-link" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
 
-    <!-- copyright -->
+  </div>
+  <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/11/22/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">Spring 课程笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="课程概述"><a href="#课程概述" class="headerlink" title="课程概述"></a>课程概述</h1><p>课程主要关注的三个内容  </p>
+<ul>
+<li>Spring framework</li>
+<li>Spring boot</li>
+<li>Spring cloud</li>
+</ul>
+<h1 id="第一章-初识-Spring"><a href="#第一章-初识-Spring" class="headerlink" title="第一章 初识 Spring"></a>第一章 初识 Spring</h1><p>编写第一个 Spring 程序，使用 spring 官网提供的 spring initializr 工具，填写对应的配置后，即可生成一个 spring 程序的骨架。<br><a target="_blank" rel="noopener" href="https://start.spring.io/">https://start.spring.io</a></p>
+<p>这里添加了 web 和 spring actuator 两个依赖。</p>
+<p>用 idea 打开后，直接在生成的 springbootapplication 类中进行修改，添加 restcontroller 注解，并添加一个 hello path 的 requestMapping 即可完成一个最简单的 spring 程序。  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloSpringApplication</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		SpringApplication.run(HelloSpringApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@RequestMapping(&quot;/hello&quot;)</span></span><br><span class="line">	<span class="keyword">public</span> String <span class="title function_">hello</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;Hello Spring&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以直接运行在内嵌的 tomcat 容器中。</p>
+<p>访问 <code>curl http://localhost:8080/hello</code> 即可看到运行结果 <code>Hello Spring%</code><br>访问 <code>curl http://localhost:8080/actuator/health</code> 可看到节点的健康状态 <code>&#123;&quot;status&quot;:&quot;UP&quot;&#125;% </code>  </p>
+<p>还可以使用 mvn clean package -Dmaven.test.skip 命令，将 spring 程序打包成 jar 文件<br><img src="/../../images/hellospring-jar.png" alt="生成的jar包"><br>其中，较大的那个 jar 包是 spring 自动将程序所需的依赖也打包的结果。因此可以直接使用 <code>java -jar</code> 命令运行<br><code>java -jar target/hello-spring-0.0.1-SNAPSHOT.jar</code>  </p>
+<p>假如因为某些原因无法使用 spring-boot-starter-parent 作为项目的 parent，那么只需要按下面这样修改下 pom 文件即可  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">  			<span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">  				<span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">  					<span class="tag">&lt;<span class="name">goal</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">  				<span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">  			<span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>即，添加一个 dependencyManagement 标签，将 spring-boot-starter-parent 完整的导入进来，并在下面的 spring-boot-maven-plugin 添加配置，声明在 repackage 的时候引入。</p>
+<h1 id="第二章-JDBC-必知必会"><a href="#第二章-JDBC-必知必会" class="headerlink" title="第二章 JDBC 必知必会"></a>第二章 JDBC 必知必会</h1><h2 id="如何配置单数据源"><a href="#如何配置单数据源" class="headerlink" title="如何配置单数据源"></a>如何配置单数据源</h2><p>构建项目骨架，引入的依赖有</p>
+<ul>
+<li>Actuator 监控状态</li>
+<li>H2 数据库</li>
+<li>JDBC 操作数据库</li>
+<li>Lombok 提供一些注解</li>
+<li>Web 以 web 形式启动，方便访问一些 Actuator 的一些 url</li>
+</ul>
+<p>showConnection  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DatasourcedemoApplication</span> <span class="keyword">implements</span> <span class="title class_">CommandLineRunner</span> &#123;</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> DataSource dataSource;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> JdbcTemplate jdbcTemplate;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		SpringApplication.run(DatasourcedemoApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">(String... args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		showConnection();</span><br><span class="line">		showData();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">showData</span><span class="params">()</span> &#123;</span><br><span class="line">		jdbcTemplate.queryForList(<span class="string">&quot;SELECT * FROM FOO&quot;</span>)</span><br><span class="line">				.forEach(row -&gt; log.info(row.toString()));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">showConnection</span><span class="params">()</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">		log.info(dataSource.toString());</span><br><span class="line">		<span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> dataSource.getConnection();</span><br><span class="line">		log.info(conn.toString());</span><br><span class="line">		conn.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行后，可以看到 spring boot 自动配置了数据源 HikariDataSource，并连接到内存数据库 h2 <code>HikariProxyConnection@395257482 wrapping conn0: url=jdbc:h2:mem:9c9048f5-ff8c-48fd-9f1d-837bd639a404 user=SA</code>  </p>
+<p>可以打开浏览器，访问 <a target="_blank" rel="noopener" href="http://localhost:8080/actuator/beans">http://localhost:8080/actuator/beans</a> 可以看到所有的 Bean，但是 web 模式下，actuator 默认暴露的 endpoint 只有 health，参见：<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#actuator.endpoints.exposing%E3%80%82">https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#actuator.endpoints.exposing。</a>  </p>
+<p>因此，需要先打开 beans 的暴露，在 application.properties 中添加配置 <code>management.endpoints.web.exposure.include=health,beans </code> 即可。 </p>
+<p>resources 目录下新建的 schema.sql 和 data.sql 会被 Spring Boot 自动加载，然后 showData 的代码会打印出数据库中的两行由 data.sql 插入的数据。  </p>
+<p>数据源相关配置属性<br>通用  </p>
+<ul>
+<li>spring.datasource.url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost&#x2F;test</li>
+<li>spring.datasource.username&#x3D;dbuser</li>
+<li>spring.datasource.password&#x3D;dbpass</li>
+<li>spring.datasource.driver-class-name&#x3D;com.mysql.jdbc.Driver(可选)</li>
+</ul>
+<p>初始化内嵌数据库  </p>
+<ul>
+<li>spring.datasource.initialization-mode&#x3D;embedded（默认值，只初始化内存数据库）|always（总是初始化数据库）|never（不初始化数据库）</li>
+<li>spring.datasource.schema与spring.datasource.data确定初始化SQL文件</li>
+<li>spring.datasource.platform&#x3D;hsqldb | h2 | oracle | mysql | postgresql(与前者对应）</li>
+</ul>
+<p>演示 demo 中的 application.properties 的配置  </p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">management.endpoints.web.exposure.include</span>=<span class="string">*</span></span><br><span class="line"><span class="attr">spring.output.ansi.enabled</span>=<span class="string">ALWAYS</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring.datasource.url</span>=<span class="string">jdbc:h2:mem:testdb</span></span><br><span class="line"><span class="attr">spring.datasource.username</span>=<span class="string">sa</span></span><br><span class="line"><span class="attr">spring.datasource.password</span>=<span class="string"></span></span><br><span class="line"><span class="attr">spring.datasource.hikari.maximumPoolSize</span>=<span class="string">5</span></span><br><span class="line"><span class="attr">spring.datasource.hikari.minimumIdle</span>=<span class="string">5</span></span><br><span class="line"><span class="attr">spring.datasource.hikari.idleTimeout</span>=<span class="string">600000</span></span><br><span class="line"><span class="attr">spring.datasource.hikari.connectionTimeout</span>=<span class="string">30000</span></span><br><span class="line"><span class="attr">spring.datasource.hikari.maxLifetime</span>=<span class="string">1800000</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="配置多个数据源"><a href="#配置多个数据源" class="headerlink" title="配置多个数据源"></a>配置多个数据源</h2><h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>不同数据源的配置要分开</li>
+<li>关注每次使用的资源<ul>
+<li>有多个 DataSource 时系统如何判断</li>
+<li>对应的设施（事务、ORM 等）如何选择 DataSource</li>
+</ul>
+</li>
+</ul>
+<h3 id="配置方式"><a href="#配置方式" class="headerlink" title="配置方式"></a>配置方式</h3><p>方法一 手工配置两组 DataSource 及相关内容<br>方法二 与 Spring Boot 协同工作  </p>
+<ul>
+<li>配置 @Primary 类型的 Bean: 配置了该注解的 DataSource 作为主要的 DataSource，Spring Boot 的配置将围绕该 DataSource 进行</li>
+<li>排除 Spring Boot 的自动配置<ul>
+<li>DataSourceAutoConfiguration</li>
+<li>DataSourceTransactionManagerAutoConfiguration</li>
+<li>JdbcTemplateAutoConfiguration</li>
+</ul>
+</li>
+</ul>
+<h3 id="操作记录"><a href="#操作记录" class="headerlink" title="操作记录"></a>操作记录</h3><p>构建项目 multidatasourcedemo ，引入的依赖有</p>
+<ul>
+<li>Actuator 监控状态</li>
+<li>H2 数据库</li>
+<li>JDBC 操作数据库</li>
+<li>Lombok 提供一些注解</li>
+<li>Web 以 web 形式启动，方便访问一些 Actuator 的一些 url</li>
+</ul>
+<p>application.properties 配置如下  </p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">management.endpoints.web.exposure.include</span>=<span class="string">*</span></span><br><span class="line"><span class="attr">spring.output.ansi.enabled</span>=<span class="string">ALWAYS</span></span><br><span class="line"></span><br><span class="line"><span class="attr">foo.datasource.url</span>=<span class="string">jdbc:h2:mem:foo</span></span><br><span class="line"><span class="attr">foo.datasource.username</span>=<span class="string">sa</span></span><br><span class="line"><span class="attr">foo.datasource.password</span>=<span class="string"></span></span><br><span class="line"></span><br><span class="line"><span class="attr">bar.datasource.url</span>=<span class="string">jdbc:h2:mem:bar</span></span><br><span class="line"><span class="attr">bar.datasource.username</span>=<span class="string">sa</span></span><br><span class="line"><span class="attr">bar.datasource.password</span>=<span class="string"></span></span><br></pre></td></tr></table></figure>
+
+<p>排除 Spring boot 自动配置  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication(exclude = &#123;DataSourceAutoConfiguration.class,</span></span><br><span class="line"><span class="meta">        DataSourceTransactionManagerAutoConfiguration.class,</span></span><br><span class="line"><span class="meta">        JdbcTemplateAutoConfiguration.class&#125;)</span></span><br></pre></td></tr></table></figure>
+
+<p>配置数据源  </p>
+<ol>
+<li>配置 DataSourceProperties</li>
+<li>配置 DataSource</li>
+<li>配置 PlatformTransactionManager</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(&quot;foo.datasource&quot;)</span></span><br><span class="line"><span class="keyword">public</span> DataSourceProperties <span class="title function_">fooDataSourceProperties</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">DataSourceProperties</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> DataSource <span class="title function_">fooDataSource</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">DataSourceProperties</span> <span class="variable">dataSourceProperties</span> <span class="operator">=</span> fooDataSourceProperties();</span><br><span class="line">    log.info(<span class="string">&quot;foo datasource: &#123;&#125;&quot;</span>, dataSourceProperties.getUrl());</span><br><span class="line">    <span class="keyword">return</span> dataSourceProperties.initializeDataSourceBuilder().build();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@Resource</span></span><br><span class="line"><span class="keyword">public</span> PlatformTransactionManager <span class="title function_">fooTxManager</span><span class="params">(DataSource fooDataSource)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">DataSourceTransactionManager</span>(fooDataSource);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="HikariCP"><a href="#HikariCP" class="headerlink" title="HikariCP"></a>HikariCP</h2><p>性能很快：字节码优化和很多的小改进的累积  </p>
+<ul>
+<li>Spring 1.x 默认使用的 Tomcat 连接池，要使用 HikariCP 的话，需要移除 tomcat-jdbc 依赖，配置 <code>spring.datasource.type=com.zaxxer.hikari.HikariDataSource</code>  </li>
+<li>Spring 2.x 默认使用的就是 HikariCP 连接池了，可以直接配置 <code>spring.datasource.hikari.*</code></li>
+</ul>
+<p>HikariCP 常用配置  </p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring.datasource.hikari.maximumPoolSize</span>=<span class="string">5</span></span><br><span class="line"><span class="attr">spring.datasource.hikari.minimumIdle</span>=<span class="string">5</span></span><br><span class="line"><span class="attr">spring.datasource.hikari.idleTimeout</span>=<span class="string">600000</span></span><br><span class="line"><span class="attr">spring.datasource.hikari.connectionTimeout</span>=<span class="string">30000</span></span><br><span class="line"><span class="attr">spring.datasource.hikari.maxLifetime</span>=<span class="string">1800000</span></span><br></pre></td></tr></table></figure>
+<p>官网：<a target="_blank" rel="noopener" href="https://github.com/brettwooldridge/HikariCP">https://github.com/brettwooldridge/HikariCP</a>  </p>
+
+      
+    </div>
     <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+      <a data-url="https://xiaosong97.github.io/2022/11/22/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" data-id="clas37i8g00088qxy1zio1lo0" data-title="Spring 课程笔记" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li></ul>
 
     </footer>
   </div>
-
-   
-    
+  
 </article>
 
-    
-    <article
-  id="post-01-学习笔记/字节码编程"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AD%97%E8%8A%82%E7%A0%81%E7%BC%96%E7%A8%8B/"
-    >字节码编程</a> 
-</h2>
- 
 
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AD%97%E8%8A%82%E7%A0%81%E7%BC%96%E7%A8%8B/" class="article-date">
-  <time datetime="2022-11-18T10:01:00.000Z" itemprop="datePublished">2022-11-18</time>
-</a> 
+
+  
+    <article id="post-01-学习笔记/Java IO" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/21/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20IO/" class="article-date">
+  <time class="dt-published" datetime="2022-11-21T02:06:08.000Z" itemprop="datePublished">2022-11-21</time>
+</a>
+    
   <div class="article-category">
     <a class="article-category-link" href="/categories/Learn/">Learn</a>
   </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>摘抄的 Java 字节码编程知识</p> 
-      <a class="article-more-link" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AD%97%E8%8A%82%E7%A0%81%E7%BC%96%E7%A8%8B/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
 
-    <!-- copyright -->
+  </div>
+  <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/11/21/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20IO/">Java IO</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Java-输入与输出"><a href="#Java-输入与输出" class="headerlink" title="Java 输入与输出"></a>Java 输入与输出</h1><h2 id="输入-x2F-输出流"><a href="#输入-x2F-输出流" class="headerlink" title="输入&#x2F;输出流"></a>输入&#x2F;输出流</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
+<li>输入流：可以从中读取一个字节序列的对象</li>
+<li>输出流：可以向其中写入一个字节序列的对象</li>
+</ul>
+<p>其中，字节序列的来源或者目的地可以是：</p>
+<ol>
+<li>文件（大多数情况下指文件）</li>
+<li>网络连接</li>
+<li>内存块</li>
+</ol>
+<p>抽象类 InputStream 和 OutputStream 构成了输入&#x2F;输出（I&#x2F;O）类层次结构的基础</p>
+<h3 id="读写字节"><a href="#读写字节" class="headerlink" title="读写字节"></a>读写字节</h3><p>InputStream 类有一个抽象方法 <code>abstract int read()</code>, 这个方法读入一个字节，并返回读入的字节，或者在遇到输入源结尾时返回 -1.</p>
+<p>在设计具体的输入流类时，必须覆盖这个方法以提供适用的功能。</p>
+<p>OutputStream 类有一个抽象方法 <code>abstract void write()</code>, 这个方法可以向某个输出位置写出一个字节。</p>
+<p>read 和 write 方法在执行时都将<em>阻塞</em>，直至字节确实被读入或者写出。这就意味着如果流不能被立即访问（通常因为网络连接忙），那么当前线程将被阻塞。</p>
+<p>available 方法可以检查当前可读入的字节数量，这意味着像下面这样的代码片段就不可能被阻塞：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">bytesAvailable</span> <span class="operator">=</span> in.available();</span><br><span class="line"><span class="keyword">if</span> (bytesAvailable &gt; <span class="number">0</span>) &#123;</span><br><span class="line">   <span class="type">byte</span>[] data = <span class="keyword">new</span> <span class="title class_">byte</span>[bytesAvailable];</span><br><span class="line">   in.read(data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>完成对输入&#x2F;输出流的读写后，应该调用 close 方法关闭输入&#x2F;输出流，close 方法会释放掉占用的操作系统资源。<br>如果一个应用程序打开了过多的输入&#x2F;输出流而没有关闭，系统资源将被耗尽。<br>关闭一个输出流的同时还会自动冲刷该输出流的缓冲区：所有被临时置于缓冲区中，以便用更大的包的形式传递的字节在关闭输出流时都将被送出。<br>如果不关闭文件，那么写出的最后一个包可能永远得不到传递。当然，也可以使用 flush 方法手动冲刷缓冲区，但不关闭流总之不是个好习惯。</p>
+<p>即使某个输入&#x2F;输出流类实现了抽象类 InputStream&#x2F;OutputStream 中的 read&#x2F;write 抽象方法，但应用软件的程序员也很少使用，因为大家跟感兴趣的不是对于字节的读取&#x2F;写入，而是对数字、字符串和对象的读取&#x2F;写入。<br>所以我们可以使用众多的从基本的 InputStream&#x2F;OutputStream 类派生出的子类中更实用的方法。  </p>
+<p>不过在这里我们还是先对 InputStream&#x2F;OutputStream 类的方法做一个总结：  </p>
+<blockquote>
+<p><a href="file:///Users/qusong/Documents/jdk-8u351-docs-all/api/java/io/InputStream.html">java.io.InputStream 1.8</a>  </p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>修饰符和类型</th>
+<th>方法名和描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int</td>
+<td>available()<br>返回一个字节数，指在不被方法的下一个调用阻塞的情况下，输入流中能被读取（或者跳过）的字节数估计值。</td>
+</tr>
+<tr>
+<td>void</td>
+<td>close()<br>关闭当前输入流并释放任何与当前输入流相关联的系统资源。</td>
+</tr>
+<tr>
+<td>void</td>
+<td>mark(int readlimit)<br>在输入流的当前位置打一个标记（并非所有的流都支持这个特性）。<br>如果从输入流中已经读入的字节多于 readlimit个，则这个流允许忽略这个标记。</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>markSupported()<br>如果这个流支持 mark 和 reset 方法，则返回 true，否则返回 false。</td>
+</tr>
+<tr>
+<td>abstract int</td>
+<td>read()<br>从输入流中读取下一个字节，并返回该字节。这个read方法在碰到输入流的结尾时返回 -1。</td>
+</tr>
+<tr>
+<td>int</td>
+<td>read(byte[] b)<br>从输入流中读取一些字节，并存到数组 b 中，返回实际读到的字节数，或者在输入流的结尾时返回 -1。这个方法最多读入 b.length 个字节</td>
+</tr>
+<tr>
+<td>int</td>
+<td>read(byte[] b, int off, int len)<br>从输入流中读取 len 个字节到数组 b 中偏移 off 的位置，返回实际读入的字节数，或者在碰到输入流的结尾时返回 -1。<br>参数:<br>b: 数据读入的字节数组<br>off: 第一个读入字节应该被放置的位置在 b 中的偏移量<br> len: 读入字节的最大数量</td>
+</tr>
+<tr>
+<td>void</td>
+<td>reset()<br>将输入流的当前位置重置到最后一次调用 mark 标记的位置。</td>
+</tr>
+<tr>
+<td>long</td>
+<td>skip(long n)<br>在输入流中跳过 n 个字节的数据。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><a href="file:///Users/qusong/Documents/jdk-8u351-docs-all/api/java/io/OutputStream.html">java.io.OutputStream 1.8</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>修饰符和类型</th>
+<th>方法名和描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td>close()<br>关闭输出流并释放任何与当前输出流相关的系统资源。</td>
+</tr>
+<tr>
+<td>void</td>
+<td>flush()<br>冲刷当前输出流，强制发送当前所有缓冲区的数据到目的地。</td>
+</tr>
+<tr>
+<td>void</td>
+<td>write(byte[] b)<br>将指定字节数组中的所有字节到写入到当前输出流中。</td>
+</tr>
+<tr>
+<td>void</td>
+<td>write(byte[] b, int off, int len)<br>将指定字节数组中 off 位置开始且长度为 len 的字节到写入到当前输出流中。</td>
+</tr>
+<tr>
+<td>abstract void</td>
+<td>write(int b)<br>向当前输出流中写入一个字节的数据</td>
+</tr>
+</tbody></table>
+<h3 id="完整的流家族"><a href="#完整的流家族" class="headerlink" title="完整的流家族"></a>完整的流家族</h3><h4 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h4><p><img src="/../../images/iostream.png" alt="图2-1 输入流和输出流的层次结构"></p>
+<p>InputStream 的子类结构  </p>
+<ul>
+<li>AudioInputStream</li>
+<li>ByteArrayInputStream</li>
+<li>FileInputStream</li>
+<li>FilterInputStream<ul>
+<li>BufferedInputStream</li>
+<li>CheckedInputStream</li>
+<li>CipherInputStream</li>
+<li>DataInputStream: 以二进制的形式写所有的基本 Java 类型</li>
+<li>DeflaterInputStream</li>
+<li>DigestInputStream</li>
+<li>InflaterInputStream<ul>
+<li>GZIPInputStream</li>
+<li>ZipInputStream: 以常见的 ZIP 压缩格式写文件<ul>
+<li>JarInputStream</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>LineNumberInputStream</li>
+<li>ProgressMonitorInputStream</li>
+<li>PushbackInputStream</li>
+</ul>
+</li>
+<li>ObjectInputStream</li>
+<li>PipedInputStream</li>
+<li>SequenceInputStream</li>
+<li>StringBufferInputStream</li>
+</ul>
+<p>OutputStream 的子类结构 </p>
+<ul>
+<li>ByteArrayOutputStream</li>
+<li>FileOutputStream</li>
+<li>FilterOutputStream<ul>
+<li>BufferedOutputStream</li>
+<li>CheckedOutputStream</li>
+<li>CipherOutputStream</li>
+<li>DataOutputStream: 以二进制的形式写所有的基本 Java 类型</li>
+<li>DeflaterOutputStream<ul>
+<li>GZIPOutputStream</li>
+<li>ZipOutputStream: 以常见的 ZIP 压缩格式写文件<ul>
+<li>JarOutputStream</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DigestOutputStream</li>
+<li>InflaterOutputStream</li>
+<li>PrintStream</li>
+</ul>
+</li>
+<li>ObjectOutputStream</li>
+<li>PipedOutputStream</li>
+</ul>
+<h4 id="字符流"><a href="#字符流" class="headerlink" title="字符流"></a>字符流</h4><p>对于 Unicode 文本，可以使用抽象类 Reader 和 Writer 的子类。Reader 和 Writer 类的基本方法与 InputStream 和 Outputstream 中的方法类似 </p>
+<p><code>abstract int read()</code> 方法返回一个 Unicode 码元（一个在0～65535之间的整数），或者在碰到文件结尾时返回 -1。<br><code>abstract void write(int c)</code> 方法需要传递一个 Unicode 码元<br>Reader 和 writer 的层次结构<br><img src="/../../images/reader_writer.png" alt="图2-2 Reader 和 Writer 的层次结构"></p>
+<h4 id="附加接口"><a href="#附加接口" class="headerlink" title="附加接口"></a>附加接口</h4><p><img src="/../../images/iointerface.png" alt="图2-3 Closeable、Flushable、Readable 和 Appendable 接口"></p>
+<ol>
+<li>Closeable: 只有一个方法 <code>void close() throws IOException</code> 关闭这个 Closeable</li>
+<li>Flushable: 只有一个方法 <code>void flush() throws IOException</code> 冲刷这个 Flushable</li>
+<li>Readable: 只有一个方法 <code>int read(java.nio.CharBuffer cb) throws IOException</code><ol>
+<li>read 方法表示尝试向 cb 中读入其可持有数量的 char 值。返回读入的 char 值的数量，或者当从这个 Readable 中无法再获得更多的值时返回 -1。</li>
+<li>CharBuffer 类拥有按顺序和随机读写访问的方法，它表示一个内存中的缓冲区或者一个内存映像的文件。</li>
+</ol>
+</li>
+<li>Appendable: 有三个用于添加单个字符和字符序列的方法<ol>
+<li><code>Appendable append(CharSequence csq) throws IOException</code> 向这个 Appendable 中追加给定的码元序列中的所有码元。</li>
+<li><code>Appendable append(CharSequence csq, int start, int end) throws IOException</code> 向这个 Appendable 中追加给定的码元序列中 [start, end) 区间内的所有码元。</li>
+<li><code>Appendable append(char c) throws IOException</code> 向这个 Appendable 中追加给定的码元。</li>
+<li>CharSequence 接口描述了一个 char 值序列的基本属性，String、CharBuffer、String Builder 和 StringBuffer 都实现了它。<ol>
+<li><code>char charAt(int index)</code> 返回给定索引处的码元</li>
+<li><code>int length</code> 返回在这个序列中的码元数量</li>
+<li><code>CharSequence subSequence(int startIndex, int endIndex)</code> 返回由区间 [startIndex, endIndex) 内的所有码元构成的 CharSequence</li>
+<li><code>String toString()</code> 返回这个序列中所有码元构成的字符串</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>InputStream、OutputStream、Reader 和 Writer 都实现了 Closeable 接口，而 OutputStream 和 Writer 还实现了 Flushable 接口。</p>
+<p>在流类的家族中，只有 Writer 实现了 Appendable 接口。</p>
+<h3 id="组合输入-x2F-输出流过滤器"><a href="#组合输入-x2F-输出流过滤器" class="headerlink" title="组合输入&#x2F;输出流过滤器"></a>组合输入&#x2F;输出流过滤器</h3><p>FileInputStream 和 FileOutputStream 可以提供附着在一个磁盘文件上的输入流和输出流，而你只需要向其构造器提供文件名或者文件的完整路径名。例如:<br><code>FileInputStream fin = new FileInputStream(&quot;employee.dat&quot;);</code> .<br>这行代码可以查看在用户目录下名为 “employee.dat” 的文件。  </p>
+<blockquote>
+<p>所有在 java.io 中的类都将相对路径名解释为以用户当前工作目录(java项目的根目录，或者假如是单个java文件那就是java文件本身所在的目录）开始，你可以通过调用 <code>System.getProperty(&quot;user.dir&quot;)</code> 来获取这个信息。<br>对于可移植的程序，应该使用程序所运行平台的文件分割符，可以用常量字符串 java.io.File.separator 获取。</p>
+</blockquote>
+<ul>
+<li>FileInputStream 只支持在字节级别上的读写，没有任何读入数值类型的方法</li>
+<li>DataInputStream 只能读入数值类型，无法从文件中获取数据</li>
+</ul>
+<p>Java 中使用了一种灵巧的机制：某些输入流（例如 FileInputStream 和由 URL 类的 openstream 方法返回的输入流）可以从文件和其他更外部的位置上获取字节，而其他输入流（例如 DataInputStream）可以将字节组装到更为有用的数据类型中。<br>因此，为了从文件中读入数字，首先需要创建一个 FileInputStream，然后将其传递给 DataInputStream 的构造器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">FileInputStream</span> <span class="variable">fin</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;employee.dat&quot;</span>);</span><br><span class="line"><span class="type">DataInputStream</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DataInputStream</span>(fin);</span><br><span class="line"><span class="type">double</span> <span class="variable">x</span> <span class="operator">=</span> in.readDouble();</span><br></pre></td></tr></table></figure>
+
+<p>再次查看上面的 字节流 的类层次结构图，可以看到 FilterInputStream 和 FileOutputStream 类的子类用于向处理字节的输入&#x2F;输出流添加额外功能。  </p>
+<p>可以通过嵌套过滤器来添加多重功能。例如，输入流在默认情况下是不被缓冲区缓存的，也就是说，每个对 read 的调用都会请求操作系统再分发一个字节。相比之下，请求一个数据块并将其置于缓冲区中会显得更加高效。如果我们想使用缓冲机制，以及用于文件的数据输入方法，那么就需要使用下面这种相当复杂的构造器序列：  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">DataInputStream</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DataInputStream</span>(</span><br><span class="line">                    <span class="keyword">new</span> <span class="title class_">BufferedInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;employee.data&quot;</span>)));</span><br></pre></td></tr></table></figure>
+
+<p>当多个输入流连接在一起时，需要跟踪各个中介输入流（intermediate input stream）。例如，当读入输入时，你经常需要预览下一个字节，以了解它是否时你想要的值。Java 提供了用于此目的的 PushbackInputStream:<br><code>PushbackInputStream pbin = new PushbackInputStream(new BufferedInputStream(new FileInputStream(&quot;employee.dat&quot;)));</code></p>
+<p>现在你可以预读下一个字节: <code>int b = pbin.read();</code><br>并且在它并非你所期望的值时将其推回流中。<code>if (b != &#39;&lt;&#39;) pbin.unread(b);</code> .<br>但是读入和推回时可应用于可回推（pushback）输入流的仅有的方法。如果你希望能够预先浏览并且还可以读入数字，那么你就需要一个既是可回推输入流，又是一个数据输入流的引用。<br><code>DataInputStream din = new DataInputStream(pbin=new PushbackInputStream(new BufferedInputStream(new FileInputStream(&quot;employee.dat&quot;))));</code><br>当然，在其他编程语言的输入&#x2F;输出流类库中，诸如缓冲机制和预览等细节都是自动处理的。因此，相比较而言，Java 就有一些麻烦，它必须将多个流过滤器组合起来。<br>但是，这种混合并匹配过滤器类以构建真正有用的输入&#x2F;输出流的能力，将带来极大的灵活性，例如，你可以从一个 ZIP 压缩文件中通过使用下面的输入流序列来读入数字：  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ZipInputStream</span> <span class="variable">zin</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ZipInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;employee.zip&quot;</span>));</span><br><span class="line"><span class="type">DataInputStream</span> <span class="variable">din</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DataInputStream</span>(zin);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../images/filterstream.png" alt="图2-4 过滤器流序列"></p>
+<h2 id="文本输入与输出"><a href="#文本输入与输出" class="headerlink" title="文本输入与输出"></a>文本输入与输出</h2><p>保存数据时可以选择二进制格式或者文本格式。<br>二进制格式的 I&#x2F;O 高速且高效，但不适合人来阅读，相对的，文本格式适合人来阅读，但 I&#x2F;O 速度相对低一些。  </p>
+<h3 id="读写文本格式"><a href="#读写文本格式" class="headerlink" title="读写文本格式"></a>读写文本格式</h3><p>存储文本字符串时，需要考虑字符编码方式。在 Java 内部使用 UTF-16 的编码方式，字符串 “1234” 编码为 “00 31 00 32 00 33 00 34”。<br>UTF-8 的编码方式则在互联网上最为常用，字符串 “1234” 编码为 4A 6F 73 C3 A9  </p>
+<p>OutputStreamWriter 类将使用选定的字符编码方式，把 Unicode 码元的输出流转换为字节流。而 InputStreamReader 类则将包含字节（用某种字符编码方式表示的字符）的输入流转换为可以产生的 Unicode 码元的读入器。<br>例如，下面的代码可以让一个输入读入器从控制台读入键盘敲击的信息，并将其转换为 Unicode:<br><code>Reader in = new InputStreamReader(System.in);</code><br>这个 InputStreamReader 会使用主机系统所使用的默认字符编码方式。应该总是在 InputStreamReader的构造器中选择一种具体的编码方式，例如:<br><code>Reader in = new InputStreamReader(new FileInputStream(&quot;data.txt&quot;), StandardCharsets.UTF_8);</code>  </p>
+<h4 id="如何写出文本输出"><a href="#如何写出文本输出" class="headerlink" title="如何写出文本输出"></a>如何写出文本输出</h4><p>可以使用 PrintWriter 完成文本输出的任务，这个类拥有以文本格式打印字符串和数字的方法，可以使用下面的方法构造:<br><code>PrintWriter out = new PrintWriter(&quot;employee.txt&quot;, &quot;UTF-8&quot;);</code><br>为了输出到 PrintWriter，需要使用与使用 <code>System.out</code> 时相同的 print、println 和 printf 方法。<br>你可以用这些方法来打印数字（int、short、long、float、double）、字符、boolean 值和对象。  </p>
+<h4 id="如何读入文本输入"><a href="#如何读入文本输入" class="headerlink" title="如何读入文本输入"></a>如何读入文本输入</h4><p>最简单的处理任意文本的方式就是使用 Scanner 类，我们可以从任何输入流中构建 Scanner 对象。  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (<span class="type">Scanner</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(inputStream,</span><br><span class="line">                    StandardCharsets.UTF_8))) &#123;</span><br><span class="line">    String line;</span><br><span class="line">    <span class="keyword">while</span> (in.hasNextLine()) &#123;</span><br><span class="line">        <span class="comment">// do something with line</span></span><br><span class="line">        line = in.nextLine();</span><br><span class="line">        <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> in.nextInt();</span><br><span class="line">        <span class="type">double</span> <span class="variable">b</span> <span class="operator">=</span> in.nextDouble();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>或者，我们也可以将短小的文本文件像下面这样读入到一个字符串中：<br><code>String content = new String(Files.readAllBytes(path), charset);</code><br>如果想要将这个文件按行读入，可以调用：<br><code>List&lt;String&gt; lines = Files.readAllLines(path, charset);</code><br>如果文件太大，那么可以将行惰性处理为一个 Stream<String> 对象：  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (Stream&lt;String&gt; lines = Files.lines(path, charset)) &#123;</span><br><span class="line">    ...    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在早期的 Java 版本中，处理文本输入的唯一方式就是通过 BufferedReader 类。它的 readLine 方法会产生一行文本，或者在无法获得更多输入时返回 null。典型的输入循环看起来像下面这样：  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> Files.newInputStream(Paths.get(<span class="string">&quot;employee.txt&quot;</span>));</span><br><span class="line"><span class="keyword">try</span> (<span class="type">BufferedReader</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(inputStream,</span><br><span class="line">        StandardCharsets.UTF_8))) &#123;</span><br><span class="line">    String line;</span><br><span class="line">    <span class="keyword">while</span> ((line = in.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="comment">// do something with line</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如今，BufferedReader 类又有了一个 lines 方法，可以产生一个 Stream<String> 对象，但是与 Scanner 不同，BufferedReader 没有用于任何读入数字的方法。 </p>
+<h4 id="字符编码方式"><a href="#字符编码方式" class="headerlink" title="字符编码方式"></a>字符编码方式</h4><p>Java 针对字符使用的是 Unicode 标准，每个字符或 “编码点” 都对应一个 21 位的整数。基于 Unicode 标准有很多种编码方式。  </p>
+<blockquote>
+<p>编码方式：指将 Unicode 字符对应的 21 位整数转换成 字节 的方式。</p>
+</blockquote>
+<p>最常见的编码方式是 UTF-8, 它会将每个 Unicode 编码点编码为 1 到 4 个字节的序列，也就是说 UTF-8 是一种可变长的编码方式。<br>UTF-8 的好处是传统的包含了英语中所有用到字符的 ASCII 字符集中每个字符经过 UTF-8 编码后都只占用一个字节。<br>表2-1 UTF-8 编码方式  </p>
+<table>
+<thead>
+<tr>
+<th>字符范围</th>
+<th>编码方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0…7F</td>
+<td>0a<sub>6</sub>a<sub>5</sub>a<sub>4</sub>a<sub>3</sub>a<sub>2</sub>a<sub>1</sub>a<sub>0</sub></td>
+</tr>
+<tr>
+<td>80…7FF</td>
+<td>110a<sub>10</sub>a<sub>9</sub>a<sub>8</sub>a<sub>7</sub>a<sub>6</sub> 10a<sub>5</sub>a<sub>4</sub>a<sub>3</sub>a<sub>2</sub>a<sub>1</sub>a<sub>0</sub></td>
+</tr>
+<tr>
+<td>800…7FFF</td>
+<td>1110a<sub>15</sub>a<sub>14</sub>a<sub>13</sub>a<sub>12</sub> 10a<sub>11</sub>a<sub>10</sub>a<sub>9</sub>a<sub>8</sub>a<sub>7</sub>a<sub>6</sub> 10a<sub>5</sub>a<sub>4</sub>a<sub>3</sub>a<sub>2</sub>a<sub>1</sub>a<sub>0</sub></td>
+</tr>
+<tr>
+<td>10000…10FFFF</td>
+<td>11110a<sub>20</sub>a<sub>19</sub>a<sub>18</sub> 10a<sub>17</sub>a<sub>16</sub>a<sub>15</sub>a<sub>14</sub>a<sub>13</sub>a<sub>12</sub> 10a<sub>11</sub>a<sub>10</sub>a<sub>9</sub>a<sub>8</sub>a<sub>7</sub>a<sub>6</sub> 10a<sub>5</sub>a<sub>4</sub>a<sub>3</sub>a<sub>2</sub>a<sub>1</sub>a<sub>0</sub></td>
+</tr>
+</tbody></table>
+<p>另一种常见的编码方式是 UTF-16，它会将每个 Unicode 编码点编码为 1 个或 2 个 16 位值。这是一种在 Java 字符串中使用的编码方式。实际上，有两种形式的 UTF-16，分别是 <em>高位优先</em> 和 <em>低位优先</em> 。对于 16 位值 0x2122，在高位优先格式中，高位字节会先出现：0x21 后面跟着 0x22；但是在低位优先格式中，则是 0x22 后面跟着 0x21 。为了表示使用的是哪一种格式，文件可以以 “字节顺序标记” 开头，这个标记为 16 位数值 0xFEFF。读入器可以使用这个值来确定字节顺序，然后丢弃它。  </p>
+<p>表2-2 UTF-16 编码方式  </p>
+<table>
+<thead>
+<tr>
+<th>字符范围</th>
+<th>编码方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0…FFFF</td>
+<td>a<sub>15</sub>a<sub>14</sub>a<sub>13</sub>a<sub>12</sub>a<sub>11</sub>a<sub>10</sub>a<sub>9</sub>a<sub>8</sub> a<sub>7</sub>a<sub>6</sub>a<sub>5</sub>a<sub>4</sub>a<sub>3</sub>a<sub>2</sub>a<sub>1</sub>a<sub>0</sub></td>
+</tr>
+<tr>
+<td>10000…10FFFF</td>
+<td>110110b<sub>19</sub>b<sub>18</sub> b<sub>17</sub>b<sub>16</sub>a<sub>15</sub>a<sub>14</sub>a<sub>13</sub>a<sub>12</sub>a<sub>11</sub>a<sub>10</sub> 110111a<sub>9</sub>a<sub>8</sub> a<sub>7</sub>a<sub>6</sub>a<sub>5</sub>a<sub>4</sub>a<sub>3</sub>a<sub>2</sub>a<sub>1</sub>a<sub>0</sub><br>其中 b<sub>19</sub>b<sub>18</sub>b<sub>17</sub>b<sub>16</sub> &#x3D; a<sub>20</sub>a<sub>19</sub>a<sub>18</sub>a<sub>17</sub>a<sub>16</sub> - 1</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注：某些程序会在 UTF-8 编码的文件开头处添加一个字节顺序标记，虽然 UTF-8 标准中不存在字节顺序的问题，但 Unicode 标准允许添加字节顺序标记。因此需要注意将输入中发现的所有先导的 \uFEFF 字节顺序标记丢弃掉。  </p>
+</blockquote>
+<p>除了 UTF 编码方式外，还有一些编码方式，它们各自有覆盖了适用于特定用户人群的字符范围。<br>例如，ISO 8859-1 是一种单字节的编码，它包含了西欧各种语言中用到的带有重音符号的字符，而 Shift-JIS 是一种用于日文字符的可变长编码。  </p>
+<p>不存在任何可靠的方式可以自动地探测出字节流中所使用的字符编码方式，因此应该总是明确指定编码方式。例如，在编写网页时，应该检查 Content-Type 头信息。  </p>
+<blockquote>
+<ul>
+<li>平台使用的编码方式可以使用静态方法 <code>Charset.defaultCharset()</code> 返回。</li>
+<li><code>Charset.availableCharsets()</code> 方法会返回所有可用的 Charset 实例</li>
+</ul>
+</blockquote>
+<p>StandardCharsets 类具有类型为 Charset 的静态变量，用于表示每种 Java 虚拟机都必须支持的字符编码方式：  </p>
+<ul>
+<li>StandardCharsets.UTF_8</li>
+<li>StandardCharsets.UTF_16</li>
+<li>StandardCharsets.UTF_16BE</li>
+<li>StandardCharsets.UTF_16LE</li>
+<li>StandardCharsets.ISO_8859_1</li>
+<li>StandardCharsets.US_ASCII</li>
+</ul>
+<p>为了获得另一种编码方式的 Charset，可以使用静态的 forName 方法：<code>Charset shiftJIS = Charset.forName(&quot;Shift-JIS&quot;);</code><br>在读入或写出文本时，应该使用 Charset 对象。例如我们可以像下面这样将一个字节数组转换为字符串:<br><code>String str = new String(bytes, StandardCharsets.UTF_8);</code>  </p>
+<blockquote>
+<p>注意: 在不指定任何编码方式时，有些方法（例如 String(byte[]) 构造器）会使用默认的平台编码方式(<code>Charset.defaultCharset()</code>)，而其他方法（例如 Files.readAllLines）会使用 UTF-8 。</p>
+</blockquote>
+<h3 id="读写二进制数据"><a href="#读写二进制数据" class="headerlink" title="读写二进制数据"></a>读写二进制数据</h3><h4 id="DataInput-和-DataOutput-接口"><a href="#DataInput-和-DataOutput-接口" class="headerlink" title="DataInput 和 DataOutput 接口"></a>DataInput 和 DataOutput 接口</h4><h4 id="随机访问文件"><a href="#随机访问文件" class="headerlink" title="随机访问文件"></a>随机访问文件</h4><h4 id="ZIP-文档"><a href="#ZIP-文档" class="headerlink" title="ZIP 文档"></a>ZIP 文档</h4><h2 id="对象输入-x2F-输出流与序列化"><a href="#对象输入-x2F-输出流与序列化" class="headerlink" title="对象输入&#x2F;输出流与序列化"></a>对象输入&#x2F;输出流与序列化</h2><h2 id="操作文件"><a href="#操作文件" class="headerlink" title="操作文件"></a>操作文件</h2><h2 id="内存映射文件"><a href="#内存映射文件" class="headerlink" title="内存映射文件"></a>内存映射文件</h2><h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h1 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h1><p>待搜索</p>
+
+      
+    </div>
     <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+      <a data-url="https://xiaosong97.github.io/2022/11/21/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20IO/" data-id="clas37i8u00148qxyeu7a5t0m" data-title="Java IO" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IO/" rel="tag">IO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
 
     </footer>
   </div>
-
-   
-    
+  
 </article>
 
-    
-    <article
-  id="post-01-学习笔记/学习计划"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/"
-    >学习计划</a> 
-</h2>
- 
 
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/" class="article-date">
-  <time datetime="2022-11-18T09:59:02.000Z" itemprop="datePublished">2022-11-18</time>
-</a> 
+
+  
+    <article id="post-04-记录备忘/待办事项" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/19/04-%E8%AE%B0%E5%BD%95%E5%A4%87%E5%BF%98/%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9/" class="article-date">
+  <time class="dt-published" datetime="2022-11-19T05:39:27.000Z" itemprop="datePublished">2022-11-19</time>
+</a>
+    
   <div class="article-category">
     <a class="article-category-link" href="/categories/Learn/">Learn</a>
   </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>学习计划</p> 
-      <a class="article-more-link" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
 
-    <!-- copyright -->
+  </div>
+  <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/11/19/04-%E8%AE%B0%E5%BD%95%E5%A4%87%E5%BF%98/%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9/">待办事项</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="待办事项"><a href="#待办事项" class="headerlink" title="待办事项"></a>待办事项</h1><ul>
+<li><input disabled="" type="checkbox"> 完善未完成的文档</li>
+</ul>
+
+      
+    </div>
     <footer class="article-footer">
-       
+      <a data-url="https://xiaosong97.github.io/2022/11/19/04-%E8%AE%B0%E5%BD%95%E5%A4%87%E5%BF%98/%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9/" data-id="clas37i9300238qxyhu1bdfws" data-title="待办事项" class="article-share-link">分享</a>
+      
+      
+      
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E5%88%92/" rel="tag">计划</a></li></ul>
 
     </footer>
   </div>
-
-   
-    
+  
 </article>
 
-    
-    <article
-  id="post-01-学习笔记/2022年11月计划"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2022%E5%B9%B411%E6%9C%88%E8%AE%A1%E5%88%92/"
-    >2022年11月计划</a> 
-</h2>
- 
 
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2022%E5%B9%B411%E6%9C%88%E8%AE%A1%E5%88%92/" class="article-date">
-  <time datetime="2022-11-18T09:58:48.000Z" itemprop="datePublished">2022-11-18</time>
-</a> 
+
+  
+    <article id="post-01-学习笔记/Mac 下修改 brew 源" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/19/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Mac%20%E4%B8%8B%E4%BF%AE%E6%94%B9%20brew%20%E6%BA%90/" class="article-date">
+  <time class="dt-published" datetime="2022-11-19T05:01:14.000Z" itemprop="datePublished">2022-11-19</time>
+</a>
+    
   <div class="article-category">
     <a class="article-category-link" href="/categories/Learn/">Learn</a>
   </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>11月计划</p> 
-      <a class="article-more-link" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2022%E5%B9%B411%E6%9C%88%E8%AE%A1%E5%88%92/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
 
-    <!-- copyright -->
+  </div>
+  <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/11/19/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Mac%20%E4%B8%8B%E4%BF%AE%E6%94%B9%20brew%20%E6%BA%90/">Mac 下修改 brew 源</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1614039">https://cloud.tencent.com/developer/article/1614039</a></p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Homebrew 是一款自由及开放源代码的软件包管理系统，用以简化 macOS 和 linux 系统上的软件安装过程。它拥有安装、卸载、更新、查看、搜索等很多实用的功能，通过简单的一条指令，就可以实现包管理，十分方便快捷。</p>
+
+<p>Homebrew 主要有四个部分组成: brew、homebrew-core 、homebrew-bottles、homebrew-cask。</p>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>brew</td>
+<td>Homebrew 源代码仓库</td>
+</tr>
+<tr>
+<td>homebrew-core</td>
+<td>Homebrew 核心软件仓库</td>
+</tr>
+<tr>
+<td>homebrew-bottles</td>
+<td>Homebrew 预编译二进制软件包</td>
+</tr>
+<tr>
+<td>homebrew-cask</td>
+<td>提供 macOS 应用和大型二进制文件</td>
+</tr>
+</tbody></table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看 brew.git 当前源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> &amp;&amp; git remote -v</span></span><br><span class="line">origin    https://github.com/Homebrew/brew.git (fetch)</span><br><span class="line">origin    https://github.com/Homebrew/brew.git (push)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看 homebrew-core.git 当前源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> &amp;&amp; git remote -v</span></span><br><span class="line">origin    https://github.com/Homebrew/homebrew-core.git (fetch)</span><br><span class="line">origin    https://github.com/Homebrew/homebrew-core.git (push)</span><br></pre></td></tr></table></figure>
+<h1 id="替换为阿里源"><a href="#替换为阿里源" class="headerlink" title="替换为阿里源"></a>替换为阿里源</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">修改 brew.git 为阿里源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://mirrors.aliyun.com/homebrew/brew.git</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">修改 homebrew-core.git 为阿里源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://mirrors.aliyun.com/homebrew/homebrew-core.git</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">zsh 替换 brew bintray 镜像</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles&#x27;</span> &gt;&gt; ~/.zshrc</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">source</span> ~/.zshrc</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">bash 替换 brew bintray 镜像</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles&#x27;</span> &gt;&gt; ~/.bash_profile</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">source</span> ~/.bash_profile</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">刷新源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">brew update</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="替换为清华源"><a href="#替换为清华源" class="headerlink" title="替换为清华源"></a>替换为清华源</h1><figure class="highlight plaintext"><figcaption><span>替换各个源</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ git -C &quot;$(brew --repo)&quot; remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git</span><br><span class="line">$ git -C &quot;$(brew --repo homebrew/core)&quot; remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git</span><br><span class="line">$ git -C &quot;$(brew --repo homebrew/cask)&quot; remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git</span><br><span class="line"></span><br><span class="line"># zsh 替换 brew bintray 镜像</span><br><span class="line">$ echo &#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles&#x27; &gt;&gt; ~/.zshrc</span><br><span class="line">$ source ~/.zshrc</span><br><span class="line"></span><br><span class="line"># bash 替换 brew bintray 镜像</span><br><span class="line">$ echo &#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles&#x27; &gt;&gt; ~/.bash_profile</span><br><span class="line">$ source ~/.bash_profile</span><br><span class="line"></span><br><span class="line"># 刷新源</span><br><span class="line">$ brew update</span><br></pre></td></tr></table></figure>
+
+<h1 id="替换为中科大源"><a href="#替换为中科大源" class="headerlink" title="替换为中科大源"></a>替换为中科大源</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">替换各个源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://mirrors.ustc.edu.cn/brew.git</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/cask)</span>&quot;</span> remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">zsh 替换 brew bintray 镜像</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles&#x27;</span> &gt;&gt; ~/.zshrc</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">source</span> ~/.zshrc</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">bash 替换 brew bintray 镜像</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles&#x27;</span> &gt;&gt; ~/.bash_profile</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">source</span> ~/.bash_profile</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">刷新源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">brew update</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="重置为官方源"><a href="#重置为官方源" class="headerlink" title="重置为官方源"></a>重置为官方源</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重置 brew.git 为官方源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/brew.git</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重置 homebrew-core.git 为官方源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/homebrew-core.git</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重置 homebrew-cask.git 为官方源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/cask)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/homebrew-cask</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">zsh 注释掉 HOMEBREW_BOTTLE_DOMAIN 配置</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">vi ~/.zshrc</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">export</span> HOMEBREW_BOTTLE_DOMAIN=xxxxxxxxx</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">bash 注释掉 HOMEBREW_BOTTLE_DOMAIN 配置</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">vi ~/.bash_profile</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">export</span> HOMEBREW_BOTTLE_DOMAIN=xxxxxxxxx</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">刷新源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">brew update</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
     <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E5%88%92/" rel="tag">计划</a></li></ul>
+      <a data-url="https://xiaosong97.github.io/2022/11/19/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Mac%20%E4%B8%8B%E4%BF%AE%E6%94%B9%20brew%20%E6%BA%90/" data-id="clas37i8f00078qxy0jyv68ag" data-title="Mac 下修改 brew 源" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/brew/" rel="tag">brew</a></li></ul>
 
     </footer>
   </div>
-
-   
-    
+  
 </article>
 
-    
-    <article
-  id="post-01-学习笔记/2022-11-12[菜谱]"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2022-11-12%5B%E8%8F%9C%E8%B0%B1%5D/"
-    >2022-11-12[菜谱]</a> 
-</h2>
- 
 
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2022-11-12%5B%E8%8F%9C%E8%B0%B1%5D/" class="article-date">
-  <time datetime="2022-11-18T09:58:29.000Z" itemprop="datePublished">2022-11-18</time>
-</a> 
+
+  
+    <article id="post-01-学习笔记/adb无线连接" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/19/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/adb%E6%97%A0%E7%BA%BF%E8%BF%9E%E6%8E%A5/" class="article-date">
+  <time class="dt-published" datetime="2022-11-19T04:18:50.000Z" itemprop="datePublished">2022-11-19</time>
+</a>
+    
   <div class="article-category">
     <a class="article-category-link" href="/categories/Learn/">Learn</a>
   </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>《日日之食》中找到的一荤一素做法</p> 
-      <a class="article-more-link" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2022-11-12%5B%E8%8F%9C%E8%B0%B1%5D/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
 
-    <!-- copyright -->
+  </div>
+  <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/11/19/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/adb%E6%97%A0%E7%BA%BF%E8%BF%9E%E6%8E%A5/">adb无线连接</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="使用-Wifi-连接安卓设备"><a href="#使用-Wifi-连接安卓设备" class="headerlink" title="使用 Wifi 连接安卓设备"></a>使用 Wifi 连接安卓设备</h1><p>第一步 在手机设置中打开开发者模式</p>
+<p>第二步 将手机和电脑连接到同一个 wifi 下</p>
+<p>第三步 在手机上查看ip地址</p>
+<p>第四步 在电脑上打开命令行窗口，输入命令</p>
+<ol>
+<li>开启 tcp 端口模式: <code>adb tcpip &lt;port&gt;</code>, 这里的 port 可以自定义，如 1314，则完整命令为 <code>adb tcpip 1314</code></li>
+<li>连接手机, <code>adb connect &lt;ip address&gt;:&lt;port&gt;</code>, 这里的 ip address 为第三步查到的手机 ip 地址，port 为上面自定义的端口</li>
+</ol>
+
+      
+    </div>
     <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
+      <a data-url="https://xiaosong97.github.io/2022/11/19/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/adb%E6%97%A0%E7%BA%BF%E8%BF%9E%E6%8E%A5/" data-id="clas37i8k000d8qxygwqg1v9i" data-title="adb无线连接" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/adb/" rel="tag">adb</a></li></ul>
 
     </footer>
   </div>
-
-   
-    
+  
 </article>
 
-    
-    <article
-  id="post-01-学习笔记/《Spring Boot in Action》笔记"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E3%80%8ASpring%20Boot%20in%20Action%E3%80%8B%E7%AC%94%E8%AE%B0/"
-    >《Spring Boot in Action》笔记</a> 
-</h2>
- 
 
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E3%80%8ASpring%20Boot%20in%20Action%E3%80%8B%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2022-11-18T09:58:10.000Z" itemprop="datePublished">2022-11-18</time>
-</a> 
+
+  
+    <article id="post-01-学习笔记/Java 学习笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2022-11-18T10:02:07.000Z" itemprop="datePublished">2022-11-18</time>
+</a>
+    
   <div class="article-category">
     <a class="article-category-link" href="/categories/Learn/">Learn</a>
   </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>《Spring Boot in Action》读书笔记</p> 
-      <a class="article-more-link" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E3%80%8ASpring%20Boot%20in%20Action%E3%80%8B%E7%AC%94%E8%AE%B0/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
 
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
-
-    </footer>
   </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-01-学习笔记/《把时间当作朋友》——李笑来"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
   <div class="article-inner">
     
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E3%80%8A%E6%8A%8A%E6%97%B6%E9%97%B4%E5%BD%93%E4%BD%9C%E6%9C%8B%E5%8F%8B%E3%80%8B%E2%80%94%E2%80%94%E6%9D%8E%E7%AC%91%E6%9D%A5/"
-    >《把时间当作朋友》——李笑来</a> 
-</h2>
- 
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Java 学习笔记</a>
+    </h1>
+  
 
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
       
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E3%80%8A%E6%8A%8A%E6%97%B6%E9%97%B4%E5%BD%93%E4%BD%9C%E6%9C%8B%E5%8F%8B%E3%80%8B%E2%80%94%E2%80%94%E6%9D%8E%E7%AC%91%E6%9D%A5/" class="article-date">
-  <time datetime="2022-11-18T09:57:48.000Z" itemprop="datePublished">2022-11-18</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Learn/">Learn</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>《把时间当作朋友》读书笔记</p> 
-      <a class="article-more-link" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E3%80%8A%E6%8A%8A%E6%97%B6%E9%97%B4%E5%BD%93%E4%BD%9C%E6%9C%8B%E5%8F%8B%E3%80%8B%E2%80%94%E2%80%94%E6%9D%8E%E7%AC%91%E6%9D%A5/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
+        <p>Java 学习笔记</p>
+        
+          <p class="article-more-link">
+            <a href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more">Read More</a>
+          </p>
+        
       
     </div>
-    
-
-    <!-- copyright -->
-    
     <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-02-实操记录/修改 npm 配置"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/11/18/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/%E4%BF%AE%E6%94%B9%20npm%20%E9%85%8D%E7%BD%AE/"
-    >修改 npm 配置</a> 
-</h2>
- 
-
+      <a data-url="https://xiaosong97.github.io/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="clas37i8c00038qxy5t4c0l1x" data-title="Java 学习笔记" class="article-share-link">分享</a>
       
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/11/18/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/%E4%BF%AE%E6%94%B9%20npm%20%E9%85%8D%E7%BD%AE/" class="article-date">
-  <time datetime="2022-11-18T09:56:17.000Z" itemprop="datePublished">2022-11-18</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Do/">Do</a>
-  </div>
-   
-    </div>
       
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>配置方法记录</p> 
-      <a class="article-more-link" href="/2022/11/18/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/%E4%BF%AE%E6%94%B9%20npm%20%E9%85%8D%E7%BD%AE/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
       
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-02-实操记录/Java 爬虫下载小说"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/11/18/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/Java%20%E7%88%AC%E8%99%AB%E4%B8%8B%E8%BD%BD%E5%B0%8F%E8%AF%B4/"
-    >Java 爬虫下载小说</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/11/18/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/Java%20%E7%88%AC%E8%99%AB%E4%B8%8B%E8%BD%BD%E5%B0%8F%E8%AF%B4/" class="article-date">
-  <time datetime="2022-11-18T09:55:18.000Z" itemprop="datePublished">2022-11-18</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Do/">Do</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>爬虫使用练习</p> 
-      <a class="article-more-link" href="/2022/11/18/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/Java%20%E7%88%AC%E8%99%AB%E4%B8%8B%E8%BD%BD%E5%B0%8F%E8%AF%B4/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-02-实操记录/Java 命令行使用梳理"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/11/18/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/Java%20%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8%E6%A2%B3%E7%90%86/"
-    >Java 命令行使用梳理</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/11/18/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/Java%20%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8%E6%A2%B3%E7%90%86/" class="article-date">
-  <time datetime="2022-11-18T09:48:46.000Z" itemprop="datePublished">2022-11-18</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Do/">Do</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>Java 命令行代码</p> 
-      <a class="article-more-link" href="/2022/11/18/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/Java%20%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8%E6%A2%B3%E7%90%86/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
 
     </footer>
   </div>
-
-   
-    
+  
 </article>
 
-    
-  </article>
-  
+
 
   
-  <nav class="page-nav">
+    <article id="post-01-学习笔记/字节码编程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AD%97%E8%8A%82%E7%A0%81%E7%BC%96%E7%A8%8B/" class="article-date">
+  <time class="dt-published" datetime="2022-11-18T10:01:00.000Z" itemprop="datePublished">2022-11-18</time>
+</a>
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AD%97%E8%8A%82%E7%A0%81%E7%BC%96%E7%A8%8B/">字节码编程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>摘抄的 Java 字节码编程知识</p>
+        
+          <p class="article-more-link">
+            <a href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AD%97%E8%8A%82%E7%A0%81%E7%BC%96%E7%A8%8B/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xiaosong97.github.io/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AD%97%E8%8A%82%E7%A0%81%E7%BC%96%E7%A8%8B/" data-id="clas37i8l000f8qxy50gfbb1w" data-title="字节码编程" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-01-学习笔记/学习计划" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/" class="article-date">
+  <time class="dt-published" datetime="2022-11-18T09:59:02.000Z" itemprop="datePublished">2022-11-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/">学习计划</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>学习计划</p>
+        
+          <p class="article-more-link">
+            <a href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xiaosong97.github.io/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/" data-id="clas37i8o000m8qxy3odp8zp3" data-title="学习计划" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E5%88%92/" rel="tag">计划</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-01-学习笔记/2022年11月计划" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2022%E5%B9%B411%E6%9C%88%E8%AE%A1%E5%88%92/" class="article-date">
+  <time class="dt-published" datetime="2022-11-18T09:58:48.000Z" itemprop="datePublished">2022-11-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2022%E5%B9%B411%E6%9C%88%E8%AE%A1%E5%88%92/">2022年11月计划</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>11月计划</p>
+        
+          <p class="article-more-link">
+            <a href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2022%E5%B9%B411%E6%9C%88%E8%AE%A1%E5%88%92/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xiaosong97.github.io/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2022%E5%B9%B411%E6%9C%88%E8%AE%A1%E5%88%92/" data-id="clas37i8n000j8qxyf9ouhmsr" data-title="2022年11月计划" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E5%88%92/" rel="tag">计划</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-01-学习笔记/2022-11-12[菜谱]" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2022-11-12%5B%E8%8F%9C%E8%B0%B1%5D/" class="article-date">
+  <time class="dt-published" datetime="2022-11-18T09:58:29.000Z" itemprop="datePublished">2022-11-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2022-11-12%5B%E8%8F%9C%E8%B0%B1%5D/">2022-11-12[菜谱]</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>《日日之食》中找到的一荤一素做法</p>
+        
+          <p class="article-more-link">
+            <a href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2022-11-12%5B%E8%8F%9C%E8%B0%B1%5D/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xiaosong97.github.io/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2022-11-12[%E8%8F%9C%E8%B0%B1]/" data-id="clas37i8700018qxy2l9ge12s" data-title="2022-11-12[菜谱]" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
   </nav>
-  
+
 </section>
-</div>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Do/">Do</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/">Learn</a></li></ul>
+    </div>
+  </div>
 
-      <footer class="footer">
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/" rel="tag">IO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Program/" rel="tag">Program</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3/" rel="tag">Python3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode/" rel="tag">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/" rel="tag">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew/" rel="tag">brew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iTerm2/" rel="tag">iTerm2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macOS/" rel="tag">macOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%A0%E7%BB%9F%E6%96%87%E5%8C%96/" rel="tag">传统文化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%87%E4%BB%BD/" rel="tag">备份</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E5%88%92/" rel="tag">计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/IO/" style="font-size: 10px;">IO</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Program/" style="font-size: 10px;">Program</a> <a href="/tags/Python3/" style="font-size: 10px;">Python3</a> <a href="/tags/Spring/" style="font-size: 12.5px;">Spring</a> <a href="/tags/VSCode/" style="font-size: 10px;">VSCode</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/brew/" style="font-size: 10px;">brew</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/iTerm2/" style="font-size: 10px;">iTerm2</a> <a href="/tags/macOS/" style="font-size: 10px;">macOS</a> <a href="/tags/markdown/" style="font-size: 12.5px;">markdown</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/%E4%BC%A0%E7%BB%9F%E6%96%87%E5%8C%96/" style="font-size: 10px;">传统文化</a> <a href="/tags/%E5%A4%87%E4%BB%BD/" style="font-size: 10px;">备份</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E8%AE%A1%E5%88%92/" style="font-size: 17.5px;">计划</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 15px;">读书笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/11/22/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">Spring 课程笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/21/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20IO/">Java IO</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/19/04-%E8%AE%B0%E5%BD%95%E5%A4%87%E5%BF%98/%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9/">待办事项</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/19/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Mac%20%E4%B8%8B%E4%BF%AE%E6%94%B9%20brew%20%E6%BA%90/">Mac 下修改 brew 源</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/19/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/adb%E6%97%A0%E7%BA%BF%E8%BF%9E%E6%8E%A5/">adb无线连接</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
   <div class="outer">
-    <ul>
-      <li>
-        Copyrights &copy;
-        2022
-        <i class="ri-heart-fill heart_icon"></i> qusong
-      </li>
-    </ul>
-    <ul>
-      <li>
-        
-      </li>
-    </ul>
-    <ul>
-      <li>
-        
-        
-        <span>
-  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
-  <span class="division">|</span>
-  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
-</span>
-        
-      </li>
-    </ul>
-    <ul>
+    <div id="footer-info" class="inner">
       
-    </ul>
-    <ul>
-      
-    </ul>
-    <ul>
-      <li>
-        <!-- cnzz统计 -->
-        
-      </li>
-    </ul>
+      &copy; 2022 qusong<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
   </div>
-</footer>    
-    </main>
-    <div class="float_btns">
-      <div class="totop" id="totop">
-  <i class="ri-arrow-up-line"></i>
-</div>
-
-<div class="todark" id="todark">
-  <i class="ri-moon-line"></i>
-</div>
+</footer>
 
     </div>
-    <aside class="sidebar on">
-      <button class="navbar-toggle"></button>
-<nav class="navbar">
+    <nav id="mobile-nav">
   
-  <div class="logo">
-    <a href="/"><img src="/images/ayer-side.svg" alt="以码入道"></a>
-  </div>
+    <a href="/" class="mobile-nav-link">Home</a>
   
-  <ul class="nav nav-main">
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/">主页</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/archives">归档</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/categories">分类</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/tags">标签</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/categories/Learn">学之</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/categories/Think">思之</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/categories/Do">行之</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/about">关于我</a>
-    </li>
-    
-  </ul>
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
 </nav>
-<nav class="navbar navbar-bottom">
-  <ul class="nav">
-    <li class="nav-item">
-      
-      
-    </li>
-  </ul>
-</nav>
-<div class="search-form-wrap">
-  <div class="local-search local-search-plugin">
-  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
-  <div id="local-search-result" class="local-search-result"></div>
-</div>
-</div>
-    </aside>
-    <div id="mask"></div>
-
-<!-- #reward -->
-<div id="reward">
-  <span class="close"><i class="ri-close-line"></i></span>
-  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
-  <div class="reward-box">
     
-    <div class="reward-item">
-      <img class="reward-img" src="/images/alipay.jpg">
-      <span class="reward-type">支付宝</span>
-    </div>
-    
-    
-    <div class="reward-item">
-      <img class="reward-img" src="/images/wechat.jpg">
-      <span class="reward-type">微信</span>
-    </div>
-    
-  </div>
-</div>
-    
-<script src="/js/jquery-3.6.0.min.js"></script>
- 
-<script src="/js/lazyload.min.js"></script>
-
-<!-- Tocbot -->
-
-<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
-<link
-  rel="stylesheet"
-  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
-/>
-<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
-
-<script src="/dist/main.js"></script>
-
-<!-- ImageViewer -->
- <!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                <!--  Controls are self-explanatory. Order can be changed. -->
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
-<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
-<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
-<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
-
-<script>
-    function viewer_init() {
-        let pswpElement = document.querySelectorAll('.pswp')[0];
-        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
-
-        $imgArr.forEach(($em, i) => {
-            $em.onclick = () => {
-                // slider展开状态
-                // todo: 这样不好，后面改成状态
-                if (document.querySelector('.left-col.show')) return
-                let items = []
-                $imgArr.forEach(($em2, i2) => {
-                    let img = $em2.getAttribute('data-idx', i2)
-                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
-                    let title = $em2.getAttribute('alt')
-                    // 获得原图尺寸
-                    const image = new Image()
-                    image.src = src
-                    items.push({
-                        src: src,
-                        w: image.width || $em2.width,
-                        h: image.height || $em2.height,
-                        title: title
-                    })
-                })
-                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
-                    index: parseInt(i)
-                });
-                gallery.init()
-            }
-        })
-    }
-    viewer_init()
-</script> 
-<!-- MathJax -->
-
-<!-- Katex -->
-
-<!-- busuanzi  -->
- 
-<script src="/js/busuanzi-2.3.pure.min.js"></script>
- 
-<!-- ClickLove -->
-
-<!-- ClickBoom1 -->
-
-<!-- ClickBoom2 -->
-
-<!-- CodeCopy -->
- 
-<link rel="stylesheet" href="/css/clipboard.css">
- <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
-<script>
-  function wait(callback, seconds) {
-    var timelag = null;
-    timelag = window.setTimeout(callback, seconds);
-  }
-  !function (e, t, a) {
-    var initCopyCode = function(){
-      var copyHtml = '';
-      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
-      copyHtml += '</button>';
-      $(".highlight .code pre").before(copyHtml);
-      $(".article pre code").before(copyHtml);
-      var clipboard = new ClipboardJS('.btn-copy', {
-        target: function(trigger) {
-          return trigger.nextElementSibling;
-        }
-      });
-      clipboard.on('success', function(e) {
-        let $btn = $(e.trigger);
-        $btn.addClass('copied');
-        let $icon = $($btn.find('i'));
-        $icon.removeClass('ri-file-copy-2-line');
-        $icon.addClass('ri-checkbox-circle-line');
-        let $span = $($btn.find('span'));
-        $span[0].innerText = 'COPIED';
-        
-        wait(function () { // 等待两秒钟后恢复
-          $icon.removeClass('ri-checkbox-circle-line');
-          $icon.addClass('ri-file-copy-2-line');
-          $span[0].innerText = 'COPY';
-        }, 2000);
-      });
-      clipboard.on('error', function(e) {
-        e.clearSelection();
-        let $btn = $(e.trigger);
-        $btn.addClass('copy-failed');
-        let $icon = $($btn.find('i'));
-        $icon.removeClass('ri-file-copy-2-line');
-        $icon.addClass('ri-time-line');
-        let $span = $($btn.find('span'));
-        $span[0].innerText = 'COPY FAILED';
-        
-        wait(function () { // 等待两秒钟后恢复
-          $icon.removeClass('ri-time-line');
-          $icon.addClass('ri-file-copy-2-line');
-          $span[0].innerText = 'COPY';
-        }, 2000);
-      });
-    }
-    initCopyCode();
-  }(window, document);
-</script>
- 
-<!-- CanvasBackground -->
- 
-<script src="/js/dz.js"></script>
- 
-<script>
-  if (window.mermaid) {
-    mermaid.initialize({ theme: "forest" });
-  }
-</script>
 
 
-    
-    
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
 
   </div>
 </body>
-
 </html>
