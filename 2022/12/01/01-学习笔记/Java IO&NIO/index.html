@@ -4,15 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>目录: Learn | 以码入道</title>
+  <title>Java IO&amp;NIO | 以码入道</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="以码入道">
-<meta property="og:url" content="https://xiaosong97.github.io/categories/Learn/index.html">
+  <meta name="description" content="定义用户线程：A内核：K 阻塞 IO 模型过程模拟：A -&gt; data &#x3D; socket.read()我要读数据，没数据我就等着，有数据就给我。 非阻塞 IO 模型A -&gt; data &#x3D; socket.read()我要读数据，没数据返回给我个 error，我循环着再次发起 read有数据了则拿数据处理，处理结束后跳出循环。用户线程不断循环获取 socket 状态 多">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java IO&amp;NIO">
+<meta property="og:url" content="https://xiaosong97.github.io/2022/12/01/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20IO&NIO/index.html">
 <meta property="og:site_name" content="以码入道">
+<meta property="og:description" content="定义用户线程：A内核：K 阻塞 IO 模型过程模拟：A -&gt; data &#x3D; socket.read()我要读数据，没数据我就等着，有数据就给我。 非阻塞 IO 模型A -&gt; data &#x3D; socket.read()我要读数据，没数据返回给我个 error，我循环着再次发起 read有数据了则拿数据处理，处理结束后跳出循环。用户线程不断循环获取 socket 状态 多">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-01T08:58:20.000Z">
+<meta property="article:modified_time" content="2022-12-01T08:58:20.000Z">
 <meta property="article:author" content="qusong">
-<meta property="article:tag" content="Java, Spring, MySQL, 软件工程师, 程序员, 学习">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="以码入道" type="application/atom+xml">
@@ -74,216 +78,74 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/12/01/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20IO&NIO/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-12-01T08:58:20.000Z" itemprop="datePublished">12月 1</time>
+        <section id="main"><article id="post-01-学习笔记/Java IO&amp;NIO" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/12/01/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20IO&NIO/" class="article-date">
+  <time class="dt-published" datetime="2022-12-01T08:58:20.000Z" itemprop="datePublished">2022-12-01</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/12/01/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20IO&NIO/">Java IO&amp;NIO</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      Java IO&amp;NIO
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/29/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20Guide%20%E8%AE%B0%E5%BD%95/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-11-29T08:33:32.000Z" itemprop="datePublished">11月 29</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/29/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20Guide%20%E8%AE%B0%E5%BD%95/">Spring Guide 记录</a>
-    </h1>
-  
+        <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>用户线程：A<br>内核：K</p>
+<h1 id="阻塞-IO-模型"><a href="#阻塞-IO-模型" class="headerlink" title="阻塞 IO 模型"></a>阻塞 IO 模型</h1><p>过程模拟：<br>A -&gt; data &#x3D; socket.read()<br>我要读数据，没数据我就等着，有数据就给我。</p>
+<h1 id="非阻塞-IO-模型"><a href="#非阻塞-IO-模型" class="headerlink" title="非阻塞 IO 模型"></a>非阻塞 IO 模型</h1><p>A -&gt; data &#x3D; socket.read()<br>我要读数据，没数据返回给我个 error，我循环着再次发起 read<br>有数据了则拿数据处理，处理结束后跳出循环。<br>用户线程不断循环获取 socket 状态</p>
+<h1 id="多路复用-IO-模型"><a href="#多路复用-IO-模型" class="headerlink" title="多路复用 IO 模型"></a>多路复用 IO 模型</h1><p>A -&gt; data &#x3D; socket.read()<br>我要读数据<br>内核 K 轮询所有 socket 状态，哪个 socket 就绪时，对应的用户线程才调用实际的 IO 读写操作。</p>
+<h1 id="信号驱动的-IO-模型"><a href="#信号驱动的-IO-模型" class="headerlink" title="信号驱动的 IO 模型"></a>信号驱动的 IO 模型</h1><p>A 我要读数据 -&gt; 在 socket 内注册一个信号函数，用户线程继续执行。<br>内核数据就绪 -&gt; 发送信号给 A -&gt; A 调用 IO 读写操作</p>
+<h1 id="异步-IO-模型"><a href="#异步-IO-模型" class="headerlink" title="异步 IO 模型"></a>异步 IO 模型</h1><p>A 我要读数据 -&gt; asynchronous read<br>内核：我知道了，交给我就好了。<br>内核：等数据完成，将数据拷贝到用户线程 A，搞定后发消息给 A<br>A：收到信号，直接用数据就好了，不用再去调用 IO 读写操作。</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/22/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-11-22T06:01:44.000Z" itemprop="datePublished">11月 22</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/22/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">Spring 课程笔记</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/21/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20IO/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-11-21T02:06:08.000Z" itemprop="datePublished">11月 21</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xiaosong97.github.io/2022/12/01/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20IO&NIO/" data-id="clb53m2ub00016sxycj49hcp8" data-title="Java IO&amp;NIO" class="article-share-link">分享</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/21/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20IO/">Java IO</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/19/04-%E8%AE%B0%E5%BD%95%E5%A4%87%E5%BF%98/%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-11-19T05:39:27.000Z" itemprop="datePublished">11月 19</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/19/04-%E8%AE%B0%E5%BD%95%E5%A4%87%E5%BF%98/%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9/">待办事项</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/19/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Mac%20%E4%B8%8B%E4%BF%AE%E6%94%B9%20brew%20%E6%BA%90/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-11-19T05:01:14.000Z" itemprop="datePublished">11月 19</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/19/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Mac%20%E4%B8%8B%E4%BF%AE%E6%94%B9%20brew%20%E6%BA%90/">Mac 下修改 brew 源</a>
-    </h1>
-  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/12/01/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/%E6%9E%84%E5%BB%BA%20RESTful%20%E7%BD%91%E7%BB%9C%E6%9C%8D%E5%8A%A1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          构建 RESTful 网络服务
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/11/29/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20Guide%20%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Spring Guide 记录</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/19/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/adb%E6%97%A0%E7%BA%BF%E8%BF%9E%E6%8E%A5/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-11-19T04:18:50.000Z" itemprop="datePublished">11月 19</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/19/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/adb%E6%97%A0%E7%BA%BF%E8%BF%9E%E6%8E%A5/">adb无线连接</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-11-18T10:02:07.000Z" itemprop="datePublished">11月 18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Java 学习笔记</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AD%97%E8%8A%82%E7%A0%81%E7%BC%96%E7%A8%8B/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-11-18T10:01:00.000Z" itemprop="datePublished">11月 18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AD%97%E8%8A%82%E7%A0%81%E7%BC%96%E7%A8%8B/">字节码编程</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-11-18T09:59:02.000Z" itemprop="datePublished">11月 18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/18/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/">学习计划</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/categories/Learn/page/2/">2</a><a class="extend next" rel="next" href="/categories/Learn/page/2/">下一页 &raquo;</a>
-  </nav>
 
 </section>
         

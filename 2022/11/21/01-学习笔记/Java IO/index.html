@@ -131,9 +131,7 @@
 <p>完成对输入&#x2F;输出流的读写后，应该调用 close 方法关闭输入&#x2F;输出流，close 方法会释放掉占用的操作系统资源。<br>如果一个应用程序打开了过多的输入&#x2F;输出流而没有关闭，系统资源将被耗尽。<br>关闭一个输出流的同时还会自动冲刷该输出流的缓冲区：所有被临时置于缓冲区中，以便用更大的包的形式传递的字节在关闭输出流时都将被送出。<br>如果不关闭文件，那么写出的最后一个包可能永远得不到传递。当然，也可以使用 flush 方法手动冲刷缓冲区，但不关闭流总之不是个好习惯。</p>
 <p>即使某个输入&#x2F;输出流类实现了抽象类 InputStream&#x2F;OutputStream 中的 read&#x2F;write 抽象方法，但应用软件的程序员也很少使用，因为大家跟感兴趣的不是对于字节的读取&#x2F;写入，而是对数字、字符串和对象的读取&#x2F;写入。<br>所以我们可以使用众多的从基本的 InputStream&#x2F;OutputStream 类派生出的子类中更实用的方法。  </p>
 <p>不过在这里我们还是先对 InputStream&#x2F;OutputStream 类的方法做一个总结：  </p>
-<blockquote>
-<p><a href="file:///Users/qusong/Documents/jdk-8u351-docs-all/api/java/io/InputStream.html">java.io.InputStream 1.8</a>  </p>
-</blockquote>
+<p><i><a href="file:///Users/qusong/Documents/jdk-8u351-docs-all/api/java/io/InputStream.html">java.io.InputStream 1.8</a></i>  </p>
 <table>
 <thead>
 <tr>
@@ -178,9 +176,7 @@
 <td>skip(long n)<br>在输入流中跳过 n 个字节的数据。</td>
 </tr>
 </tbody></table>
-<blockquote>
-<p><a href="file:///Users/qusong/Documents/jdk-8u351-docs-all/api/java/io/OutputStream.html">java.io.OutputStream 1.8</a></p>
-</blockquote>
+<p><i><a href="file:///Users/qusong/Documents/jdk-8u351-docs-all/api/java/io/OutputStream.html">java.io.OutputStream 1.8</a></i></p>
 <table>
 <thead>
 <tr>
@@ -293,19 +289,18 @@
 <p>InputStream、OutputStream、Reader 和 Writer 都实现了 Closeable 接口，而 OutputStream 和 Writer 还实现了 Flushable 接口。</p>
 <p>在流类的家族中，只有 Writer 实现了 Appendable 接口。</p>
 <h3 id="组合输入-x2F-输出流过滤器"><a href="#组合输入-x2F-输出流过滤器" class="headerlink" title="组合输入&#x2F;输出流过滤器"></a>组合输入&#x2F;输出流过滤器</h3><p>FileInputStream 和 FileOutputStream 可以提供附着在一个磁盘文件上的输入流和输出流，而你只需要向其构造器提供文件名或者文件的完整路径名。例如:<br><code>FileInputStream fin = new FileInputStream(&quot;employee.dat&quot;);</code> .<br>这行代码可以查看在用户目录下名为 “employee.dat” 的文件。  </p>
-<blockquote>
-<p>所有在 java.io 中的类都将相对路径名解释为以用户当前工作目录(java项目的根目录，或者假如是单个java文件那就是java文件本身所在的目录）开始，你可以通过调用 <code>System.getProperty(&quot;user.dir&quot;)</code> 来获取这个信息。<br>对于可移植的程序，应该使用程序所运行平台的文件分割符，可以用常量字符串 java.io.File.separator 获取。</p>
-</blockquote>
-<ul>
-<li>FileInputStream 只支持在字节级别上的读写，没有任何读入数值类型的方法</li>
-<li>DataInputStream 只能读入数值类型，无法从文件中获取数据</li>
-</ul>
+<i>
+注: 所有在 java.io 中的类都将相对路径名解释为以用户当前工作目录(java项目的根目录，或者假如是单个java文件那就是java文件本身所在的目录）开始，你可以通过调用 `System.getProperty("user.dir")` 来获取这个信息。
+对于可移植的程序，应该使用程序所运行平台的文件分割符，可以用常量字符串 java.io.File.separator 获取。
+</i>
+
+<p>FileInputStream 只支持在字节级别上的读写，没有任何读入数值类型的方法，而 DataInputStream 只能读入数值类型，无法从文件中获取数据。</p>
 <p>Java 中使用了一种灵巧的机制：某些输入流（例如 FileInputStream 和由 URL 类的 openstream 方法返回的输入流）可以从文件和其他更外部的位置上获取字节，而其他输入流（例如 DataInputStream）可以将字节组装到更为有用的数据类型中。<br>因此，为了从文件中读入数字，首先需要创建一个 FileInputStream，然后将其传递给 DataInputStream 的构造器：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">FileInputStream</span> <span class="variable">fin</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;employee.dat&quot;</span>);</span><br><span class="line"><span class="type">DataInputStream</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DataInputStream</span>(fin);</span><br><span class="line"><span class="type">double</span> <span class="variable">x</span> <span class="operator">=</span> in.readDouble();</span><br></pre></td></tr></table></figure>
 
 <p>再次查看上面的 字节流 的类层次结构图，可以看到 FilterInputStream 和 FileOutputStream 类的子类用于向处理字节的输入&#x2F;输出流添加额外功能。  </p>
 <p>可以通过嵌套过滤器来添加多重功能。例如，输入流在默认情况下是不被缓冲区缓存的，也就是说，每个对 read 的调用都会请求操作系统再分发一个字节。相比之下，请求一个数据块并将其置于缓冲区中会显得更加高效。如果我们想使用缓冲机制，以及用于文件的数据输入方法，那么就需要使用下面这种相当复杂的构造器序列：  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">DataInputStream</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DataInputStream</span>(</span><br><span class="line">                    <span class="keyword">new</span> <span class="title class_">BufferedInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;employee.data&quot;</span>)));</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">DataInputStream</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DataInputStream</span>(<span class="keyword">new</span> <span class="title class_">BufferedInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;employee.data&quot;</span>)));</span><br></pre></td></tr></table></figure>
 
 <p>当多个输入流连接在一起时，需要跟踪各个中介输入流（intermediate input stream）。例如，当读入输入时，你经常需要预览下一个字节，以了解它是否时你想要的值。Java 提供了用于此目的的 PushbackInputStream:<br><code>PushbackInputStream pbin = new PushbackInputStream(new BufferedInputStream(new FileInputStream(&quot;employee.dat&quot;)));</code></p>
 <p>现在你可以预读下一个字节: <code>int b = pbin.read();</code><br>并且在它并非你所期望的值时将其推回流中。<code>if (b != &#39;&lt;&#39;) pbin.unread(b);</code> .<br>但是读入和推回时可应用于可回推（pushback）输入流的仅有的方法。如果你希望能够预先浏览并且还可以读入数字，那么你就需要一个既是可回推输入流，又是一个数据输入流的引用。<br><code>DataInputStream din = new DataInputStream(pbin=new PushbackInputStream(new BufferedInputStream(new FileInputStream(&quot;employee.dat&quot;))));</code><br>当然，在其他编程语言的输入&#x2F;输出流类库中，诸如缓冲机制和预览等细节都是自动处理的。因此，相比较而言，Java 就有一些麻烦，它必须将多个流过滤器组合起来。<br>但是，这种混合并匹配过滤器类以构建真正有用的输入&#x2F;输出流的能力，将带来极大的灵活性，例如，你可以从一个 ZIP 压缩文件中通过使用下面的输入流序列来读入数字：  </p>
@@ -326,10 +321,7 @@
 <p>在早期的 Java 版本中，处理文本输入的唯一方式就是通过 BufferedReader 类。它的 readLine 方法会产生一行文本，或者在无法获得更多输入时返回 null。典型的输入循环看起来像下面这样：  </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> Files.newInputStream(Paths.get(<span class="string">&quot;employee.txt&quot;</span>));</span><br><span class="line"><span class="keyword">try</span> (<span class="type">BufferedReader</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(inputStream,</span><br><span class="line">        StandardCharsets.UTF_8))) &#123;</span><br><span class="line">    String line;</span><br><span class="line">    <span class="keyword">while</span> ((line = in.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="comment">// do something with line</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如今，BufferedReader 类又有了一个 lines 方法，可以产生一个 Stream<String> 对象，但是与 Scanner 不同，BufferedReader 没有用于任何读入数字的方法。 </p>
-<h4 id="字符编码方式"><a href="#字符编码方式" class="headerlink" title="字符编码方式"></a>字符编码方式</h4><p>Java 针对字符使用的是 Unicode 标准，每个字符或 “编码点” 都对应一个 21 位的整数。基于 Unicode 标准有很多种编码方式。  </p>
-<blockquote>
-<p>编码方式：指将 Unicode 字符对应的 21 位整数转换成 字节 的方式。</p>
-</blockquote>
+<h4 id="字符编码方式"><a href="#字符编码方式" class="headerlink" title="字符编码方式"></a>字符编码方式</h4><p>Java 针对字符使用的是 Unicode 标准，每个字符或 “编码点” 都对应一个 21 位的整数。基于 Unicode 标准有很多种编码方式。<br><i>编码方式：指将 Unicode 字符对应的 21 位整数转换成 字节 的方式。</i></p>
 <p>最常见的编码方式是 UTF-8, 它会将每个 Unicode 编码点编码为 1 到 4 个字节的序列，也就是说 UTF-8 是一种可变长的编码方式。<br>UTF-8 的好处是传统的包含了英语中所有用到字符的 ASCII 字符集中每个字符经过 UTF-8 编码后都只占用一个字节。<br>表2-1 UTF-8 编码方式  </p>
 <table>
 <thead>
@@ -373,17 +365,13 @@
 <td>110110b<sub>19</sub>b<sub>18</sub> b<sub>17</sub>b<sub>16</sub>a<sub>15</sub>a<sub>14</sub>a<sub>13</sub>a<sub>12</sub>a<sub>11</sub>a<sub>10</sub> 110111a<sub>9</sub>a<sub>8</sub> a<sub>7</sub>a<sub>6</sub>a<sub>5</sub>a<sub>4</sub>a<sub>3</sub>a<sub>2</sub>a<sub>1</sub>a<sub>0</sub><br>其中 b<sub>19</sub>b<sub>18</sub>b<sub>17</sub>b<sub>16</sub> &#x3D; a<sub>20</sub>a<sub>19</sub>a<sub>18</sub>a<sub>17</sub>a<sub>16</sub> - 1</td>
 </tr>
 </tbody></table>
-<blockquote>
-<p>注：某些程序会在 UTF-8 编码的文件开头处添加一个字节顺序标记，虽然 UTF-8 标准中不存在字节顺序的问题，但 Unicode 标准允许添加字节顺序标记。因此需要注意将输入中发现的所有先导的 \uFEFF 字节顺序标记丢弃掉。  </p>
-</blockquote>
+<p><i>注：某些程序会在 UTF-8 编码的文件开头处添加一个字节顺序标记，虽然 UTF-8 标准中不存在字节顺序的问题，但 Unicode 标准允许添加字节顺序标记。因此需要注意将输入中发现的所有先导的 \uFEFF 字节顺序标记丢弃掉。</i>  </p>
 <p>除了 UTF 编码方式外，还有一些编码方式，它们各自有覆盖了适用于特定用户人群的字符范围。<br>例如，ISO 8859-1 是一种单字节的编码，它包含了西欧各种语言中用到的带有重音符号的字符，而 Shift-JIS 是一种用于日文字符的可变长编码。  </p>
-<p>不存在任何可靠的方式可以自动地探测出字节流中所使用的字符编码方式，因此应该总是明确指定编码方式。例如，在编写网页时，应该检查 Content-Type 头信息。  </p>
-<blockquote>
+<p>不存在任何可靠的方式可以自动地探测出字节流中所使用的字符编码方式，因此应该总是明确指定编码方式。例如，在编写网页时，应该检查 Content-Type 头信息。<br><i></p>
 <ul>
 <li>平台使用的编码方式可以使用静态方法 <code>Charset.defaultCharset()</code> 返回。</li>
-<li><code>Charset.availableCharsets()</code> 方法会返回所有可用的 Charset 实例</li>
+<li><code>Charset.availableCharsets()</code> 方法会返回所有可用的 Charset 实例</i></li>
 </ul>
-</blockquote>
 <p>StandardCharsets 类具有类型为 Charset 的静态变量，用于表示每种 Java 虚拟机都必须支持的字符编码方式：  </p>
 <ul>
 <li>StandardCharsets.UTF_8</li>
@@ -394,15 +382,52 @@
 <li>StandardCharsets.US_ASCII</li>
 </ul>
 <p>为了获得另一种编码方式的 Charset，可以使用静态的 forName 方法：<code>Charset shiftJIS = Charset.forName(&quot;Shift-JIS&quot;);</code><br>在读入或写出文本时，应该使用 Charset 对象。例如我们可以像下面这样将一个字节数组转换为字符串:<br><code>String str = new String(bytes, StandardCharsets.UTF_8);</code>  </p>
-<blockquote>
-<p>注意: 在不指定任何编码方式时，有些方法（例如 String(byte[]) 构造器）会使用默认的平台编码方式(<code>Charset.defaultCharset()</code>)，而其他方法（例如 Files.readAllLines）会使用 UTF-8 。</p>
-</blockquote>
-<h3 id="读写二进制数据"><a href="#读写二进制数据" class="headerlink" title="读写二进制数据"></a>读写二进制数据</h3><h4 id="DataInput-和-DataOutput-接口"><a href="#DataInput-和-DataOutput-接口" class="headerlink" title="DataInput 和 DataOutput 接口"></a>DataInput 和 DataOutput 接口</h4><h4 id="随机访问文件"><a href="#随机访问文件" class="headerlink" title="随机访问文件"></a>随机访问文件</h4><h4 id="ZIP-文档"><a href="#ZIP-文档" class="headerlink" title="ZIP 文档"></a>ZIP 文档</h4><h2 id="对象输入-x2F-输出流与序列化"><a href="#对象输入-x2F-输出流与序列化" class="headerlink" title="对象输入&#x2F;输出流与序列化"></a>对象输入&#x2F;输出流与序列化</h2><h2 id="操作文件"><a href="#操作文件" class="headerlink" title="操作文件"></a>操作文件</h2><h2 id="内存映射文件"><a href="#内存映射文件" class="headerlink" title="内存映射文件"></a>内存映射文件</h2><h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h1 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h1><p>待搜索</p>
+<p><i>注意: 在不指定任何编码方式时，有些方法（例如 String(byte[]) 构造器）会使用默认的平台编码方式(<code>Charset.defaultCharset()</code>)，而其他方法（例如 Files.readAllLines）会使用 UTF-8 。</i></p>
+<h3 id="读写二进制数据"><a href="#读写二进制数据" class="headerlink" title="读写二进制数据"></a>读写二进制数据</h3><h4 id="DataInput-和-DataOutput-接口"><a href="#DataInput-和-DataOutput-接口" class="headerlink" title="DataInput 和 DataOutput 接口"></a>DataInput 和 DataOutput 接口</h4><p>DataOutput 接口定义了下面用于以二进制格式写数组、字符、boolean 值和字符串的方法：  </p>
+<ul>
+<li>writeChars(String s): 写出字符串中的所有字符</li>
+<li>writeByte(int b) </li>
+<li>writeInt(int i): 将一个整数写出为 4 字节的二进制数量值，不管整数本身的位数</li>
+<li>writeShort(int s)</li>
+<li>writeLong(long l)</li>
+<li>writeFloat(float f)</li>
+<li>writeDouble(double d): 将一个 double 值写出为 8 字节的二进制数量值。</li>
+<li>writeChar(int c)</li>
+<li>writeBoolean(boolean b)</li>
+<li>writeUTF: 使用修订版的 8 位 Unicode 转换格式写出字符串。这种方式和直接使用标准的 UTF-8 编码方式不同，其中，Unicode 码元序列首先用 UTF-16 表示，其结果之后使用 UTF-8 规则进行编码。（修订后的方式对于编码大于 0xFFFF 的字符的处理有所不同，这是为了向后兼容在 Unicode 还没有超过 16 位时构建的虚拟机）因为没有其他方法会使用 UTF-8 的这种修订，所以你应该只在写出用于 Java 虚拟机的字符串时才使用 writeUTF 方法，例如，当你需要编写一个生成字节码的程序时。对于其他场合，都应该使用 writeChars 方法。</li>
+</ul>
+<p>为了读回数据，可以使用 DataInput 接口中定义的下列方法：  </p>
+<ul>
+<li>readInt</li>
+<li>readShort</li>
+<li>readLong</li>
+<li>readFloat</li>
+<li>readDouble</li>
+<li>readChar</li>
+<li>readBoolean</li>
+<li>readByte</li>
+<li>readUTF</li>
+<li>readFully(byte[] b): 将字节读入到数组 b 中，其间阻塞直至所有字节都读入</li>
+<li>readFully(byte[] b, int off, int len): 将字节读入数组 b，其间阻塞直至所有字节都读入，off 数据其实位置的偏移量，len 读入字节的最大数量</li>
+<li>skipBytes(int n) 跳过 n 个字节，其间阻塞直至所有字节都被跳过</li>
+</ul>
+<p>DataInputStream 类实现了 DataInput 接口，为了从文件中读入二进制数据，可以将 DataInputStream 和某个字节源组合，例如 FileInputStream:<br><code>DataInputStream in = new DataInputStream(new FileInputStream(&quot;employee.dat&quot;));</code><br>与此类似，要想写出二进制数据，你可以使用实现了 DataOutput 接口的 DataOutputStream 类:<br><code>DataOutputStream out = new DataOutputStream(new FileOutputStream(&quot;employee.dat&quot;));</code></p>
+<p><i>Java 中所有值都是按照高位在前的模式写出的。</i></p>
+<h4 id="随机访问文件"><a href="#随机访问文件" class="headerlink" title="随机访问文件"></a>随机访问文件</h4><p>RandomAccessFile 类可以实现在文件中的任何位置查找或写入数据，磁盘文件都是随机访问的，但是网络套接字通信的输入&#x2F;输出流却不是。你可以打开一个随机访问文件，只用于读入或者同时用于读写，你可以通过使用字符串 “r”(用于读入访问) 或 “rw”(用于读入&#x2F;写出访问)作为构造器的第二个参数来指定这个选项。  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">RandomAccessFile</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RandomAccessFile</span>(<span class="string">&quot;employee.dat&quot;</span>, <span class="string">&quot;r&quot;</span>);</span><br><span class="line"><span class="type">RandomAccessFile</span> <span class="variable">inOut</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RandomAccessFile</span>(<span class="string">&quot;employee.dat&quot;</span>, <span class="string">&quot;rw&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>当你将已有文件作为 RandomAccessFile 打开时，这个文件并不会被删除。<br>RandomAccessFile 有一个表示下一个将被访问(读入或者写出)的字节所处位置的文件指针，seek 方法可以用来将这个文件指针设置到文件中的任意字节位置，seek 的参数时一个 long 类型的整数，它的值位于 0 到文件按照字节来度量的长度之间。<br>RandomAccessFile 其他的一些方法:  </p>
+<ul>
+<li>long getFilePointer 方法将返回文件指针的当前位置。</li>
+<li>long length() 方法返回文件按照字节来度量的长度。</li>
+<li>RandomAccessFile 类同时实现了类 DataInput 和 DataOutput 接口。</li>
+</ul>
+<h4 id="ZIP-文档"><a href="#ZIP-文档" class="headerlink" title="ZIP 文档"></a>ZIP 文档</h4><h2 id="对象输入-x2F-输出流与序列化"><a href="#对象输入-x2F-输出流与序列化" class="headerlink" title="对象输入&#x2F;输出流与序列化"></a>对象输入&#x2F;输出流与序列化</h2><h2 id="操作文件"><a href="#操作文件" class="headerlink" title="操作文件"></a>操作文件</h2><h2 id="内存映射文件"><a href="#内存映射文件" class="headerlink" title="内存映射文件"></a>内存映射文件</h2><h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h1 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h1><p>待搜索</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xiaosong97.github.io/2022/11/21/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20IO/" data-id="clas3kn7a000pgyxyfqpebmo2" data-title="Java IO" class="article-share-link">分享</a>
+      <a data-url="https://xiaosong97.github.io/2022/11/21/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20IO/" data-id="clb53m2uf00036sxyg0ifatvs" data-title="Java IO" class="article-share-link">分享</a>
       
       
       
@@ -463,7 +488,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/IO/" style="font-size: 10px;">IO</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Program/" style="font-size: 10px;">Program</a> <a href="/tags/Python3/" style="font-size: 10px;">Python3</a> <a href="/tags/Spring/" style="font-size: 12.5px;">Spring</a> <a href="/tags/VSCode/" style="font-size: 10px;">VSCode</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/brew/" style="font-size: 10px;">brew</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/iTerm2/" style="font-size: 10px;">iTerm2</a> <a href="/tags/macOS/" style="font-size: 10px;">macOS</a> <a href="/tags/markdown/" style="font-size: 12.5px;">markdown</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/%E4%BC%A0%E7%BB%9F%E6%96%87%E5%8C%96/" style="font-size: 10px;">传统文化</a> <a href="/tags/%E5%A4%87%E4%BB%BD/" style="font-size: 10px;">备份</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E8%AE%A1%E5%88%92/" style="font-size: 17.5px;">计划</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 15px;">读书笔记</a>
+      <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/IO/" style="font-size: 10px;">IO</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Program/" style="font-size: 10px;">Program</a> <a href="/tags/Python3/" style="font-size: 10px;">Python3</a> <a href="/tags/Spring/" style="font-size: 17.5px;">Spring</a> <a href="/tags/VSCode/" style="font-size: 10px;">VSCode</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/brew/" style="font-size: 10px;">brew</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/iTerm2/" style="font-size: 10px;">iTerm2</a> <a href="/tags/macOS/" style="font-size: 10px;">macOS</a> <a href="/tags/markdown/" style="font-size: 12.5px;">markdown</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/%E4%BC%A0%E7%BB%9F%E6%96%87%E5%8C%96/" style="font-size: 10px;">传统文化</a> <a href="/tags/%E5%A4%87%E4%BB%BD/" style="font-size: 10px;">备份</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E8%AE%A1%E5%88%92/" style="font-size: 17.5px;">计划</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 15px;">读书笔记</a>
     </div>
   </div>
 
@@ -472,7 +497,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li></ul>
     </div>
   </div>
 
@@ -485,23 +510,23 @@
       <ul>
         
           <li>
+            <a href="/2022/12/01/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/%E6%9E%84%E5%BB%BA%20RESTful%20%E7%BD%91%E7%BB%9C%E6%9C%8D%E5%8A%A1/">构建 RESTful 网络服务</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/01/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20IO&NIO/">Java IO&amp;NIO</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/29/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20Guide%20%E8%AE%B0%E5%BD%95/">Spring Guide 记录</a>
+          </li>
+        
+          <li>
             <a href="/2022/11/22/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">Spring 课程笔记</a>
           </li>
         
           <li>
             <a href="/2022/11/21/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20IO/">Java IO</a>
-          </li>
-        
-          <li>
-            <a href="/2022/11/19/04-%E8%AE%B0%E5%BD%95%E5%A4%87%E5%BF%98/%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9/">待办事项</a>
-          </li>
-        
-          <li>
-            <a href="/2022/11/19/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Mac%20%E4%B8%8B%E4%BF%AE%E6%94%B9%20brew%20%E6%BA%90/">Mac 下修改 brew 源</a>
-          </li>
-        
-          <li>
-            <a href="/2022/11/19/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/adb%E6%97%A0%E7%BA%BF%E8%BF%9E%E6%8E%A5/">adb无线连接</a>
           </li>
         
       </ul>
