@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>Java IO&amp;NIO |  以码入道</title>
+      <title>Spring-计划任务 |  以码入道</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -55,7 +55,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-01-学习笔记/Java IO&amp;NIO"
+  id="post-02-实操记录/Spring-计划任务"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -66,7 +66,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Java IO&amp;NIO
+  Spring-计划任务
 </h1>
  
 
@@ -74,11 +74,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2022/12/01/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20IO&NIO/" class="article-date">
-  <time datetime="2022-12-01T08:58:20.000Z" itemprop="datePublished">2022-12-01</time>
+      <a href="/2022/12/01/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/Spring-%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1/" class="article-date">
+  <time datetime="2022-12-01T13:26:27.000Z" itemprop="datePublished">2022-12-01</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Learn/">Learn</a>
+    <a class="article-category-link" href="/categories/Do/">Do</a>
   </div>
   
 <div class="word_count">
@@ -86,7 +86,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">293</span>
+            <span class="post-count">454</span>
         </span>
     </span>
 
@@ -95,7 +95,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1 分钟</span>
+            <span class="post-count">2 分钟</span>
         </span>
     </span>
 </div>
@@ -110,12 +110,21 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>用户线程：A<br>内核：K</p>
-<h1 id="阻塞-IO-模型"><a href="#阻塞-IO-模型" class="headerlink" title="阻塞 IO 模型"></a>阻塞 IO 模型</h1><p>过程模拟：<br>A -&gt; data &#x3D; socket.read()<br>我要读数据，没数据我就等着，有数据就给我。</p>
-<h1 id="非阻塞-IO-模型"><a href="#非阻塞-IO-模型" class="headerlink" title="非阻塞 IO 模型"></a>非阻塞 IO 模型</h1><p>A -&gt; data &#x3D; socket.read()<br>我要读数据，没数据返回给我个 error，我循环着再次发起 read<br>有数据了则拿数据处理，处理结束后跳出循环。<br>用户线程不断循环获取 socket 状态</p>
-<h1 id="多路复用-IO-模型"><a href="#多路复用-IO-模型" class="headerlink" title="多路复用 IO 模型"></a>多路复用 IO 模型</h1><p>A -&gt; data &#x3D; socket.read()<br>我要读数据<br>内核 K 轮询所有 socket 状态，哪个 socket 就绪时，对应的用户线程才调用实际的 IO 读写操作。</p>
-<h1 id="信号驱动的-IO-模型"><a href="#信号驱动的-IO-模型" class="headerlink" title="信号驱动的 IO 模型"></a>信号驱动的 IO 模型</h1><p>A 我要读数据 -&gt; 在 socket 内注册一个信号函数，用户线程继续执行。<br>内核数据就绪 -&gt; 发送信号给 A -&gt; A 调用 IO 读写操作</p>
-<h1 id="异步-IO-模型"><a href="#异步-IO-模型" class="headerlink" title="异步 IO 模型"></a>异步 IO 模型</h1><p>A 我要读数据 -&gt; asynchronous read<br>内核：我知道了，交给我就好了。<br>内核：等数据完成，将数据拷贝到用户线程 A，搞定后发消息给 A<br>A：收到信号，直接用数据就好了，不用再去调用 IO 读写操作。</p>
+  <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>创建一个每 5s 打印一次当前时间的应用程序。</p>
+<h1 id="Spring-initializr-配置"><a href="#Spring-initializr-配置" class="headerlink" title="Spring initializr 配置"></a>Spring initializr 配置</h1><p><a target="_blank" rel="noopener" href="https://start.spring.io/">https://start.spring.io</a><br>无需额外添加依赖。</p>
+<h1 id="添加依赖库"><a href="#添加依赖库" class="headerlink" title="添加依赖库"></a>添加依赖库</h1><p>添加 awaitility 依赖库，使用 maven 管理依赖  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.awaitility<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>awaitility<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注: awaitility 库的较新版本不适应本例程，所以手动指定版本。</p>
+</blockquote>
+<h1 id="新建-ScheduledTasks-类"><a href="#新建-ScheduledTasks-类" class="headerlink" title="新建 ScheduledTasks 类"></a>新建 ScheduledTasks 类</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.schedulingtasks;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.scheduling.annotation.Scheduled;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ScheduledTasks</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Logger</span> <span class="variable">log</span> <span class="operator">=</span> LoggerFactory.getLogger(ScheduledTasks.class);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">SimpleDateFormat</span> <span class="variable">dateFormat</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;HH:mm:ss&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Scheduled(fixedRate = 5000)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">reportCurrentTime</span><span class="params">()</span> &#123;</span><br><span class="line">        log.info(<span class="string">&quot;The time is now &#123;&#125;&quot;</span>, dateFormat.format(<span class="keyword">new</span> <span class="title class_">Date</span>()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>fixedRate 指定了方法两次调用之间的间隔时间（本次的调用开始时间-上次的调用开始时间），此外还有选项如 fixedDelay 指定的是两次方法调用结束时间的间隔。</p>
+<h1 id="开启-Scheduling"><a href="#开启-Scheduling" class="headerlink" title="开启 Scheduling"></a>开启 Scheduling</h1><p>ScheduledTasks 可以内嵌在别的网络应用程序中，但这里为了演示方便，我们简单打包成一个单独的程序。</p>
+<p>所以需要 SchedulingTasksApplication 的 main 方法来调用，只需要额外添加 @EnableScheduling 注解即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.schedulingtasks;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableScheduling</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SchedulingTasksApplication</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		SpringApplication.run(SchedulingTasksApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行后，可以直接在命令行看到：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2022-12-01 21:46:27.305  INFO 58412 --- [   scheduling-1] c.e.schedulingtasks.ScheduledTasks       : The time is now 21:46:27</span><br><span class="line">2022-12-01 21:46:32.304  INFO 58412 --- [   scheduling-1] c.e.schedulingtasks.ScheduledTasks       : The time is now 21:46:32</span><br><span class="line">2022-12-01 21:46:37.309  INFO 58412 --- [   scheduling-1] c.e.schedulingtasks.ScheduledTasks       : The time is now 21:46:37</span><br><span class="line">2022-12-01 21:46:42.306  INFO 58412 --- [   scheduling-1] c.e.schedulingtasks.ScheduledTasks       : The time is now 21:46:42</span><br></pre></td></tr></table></figure>
  
       <!-- reward -->
       
@@ -186,12 +195,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://xiaosong97.github.io/2022/12/01/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%20IO&NIO/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://xiaosong97.github.io/2022/12/01/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/Spring-%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li></ul>
 
     </footer>
   </div>
@@ -199,19 +208,10 @@
    
   <nav class="article-nav">
     
+    
       <a href="/2022/12/01/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/Spring-%E6%9E%84%E5%BB%BA%20RESTful%20%E7%BD%91%E7%BB%9C%E6%9C%8D%E5%8A%A1/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            Spring-构建 RESTful 网络服务
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2022/11/29/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20Guide%20%E8%AE%B0%E5%BD%95/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Spring Guide 记录</div>
+        <div class="article-nav-title">Spring-构建 RESTful 网络服务</div>
       </a>
     
   </nav>
