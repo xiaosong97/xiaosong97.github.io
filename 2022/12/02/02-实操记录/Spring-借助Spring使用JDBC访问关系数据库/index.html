@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="Java, Spring, MySQL, 软件工程师, 程序员, 学习" />
+       
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>Spring-借助Spring使用JDBC访问关系数据库 |  以码入道</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-02-实操记录/Spring-借助Spring使用JDBC访问关系数据库"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Spring-借助Spring使用JDBC访问关系数据库
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/12/02/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/Spring-%E5%80%9F%E5%8A%A9Spring%E4%BD%BF%E7%94%A8JDBC%E8%AE%BF%E9%97%AE%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
+  <time datetime="2022-12-02T12:34:45.000Z" itemprop="datePublished">2022-12-02</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Do/">Do</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">5 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>构建一个应用程序，使用 Spring 的 JdbcTemplate 来访问存储在关系数据库中的数据。</p>
+<h1 id="Spring-initializr-配置"><a href="#Spring-initializr-配置" class="headerlink" title="Spring initializr 配置"></a>Spring initializr 配置</h1><p><a target="_blank" rel="noopener" href="https://start.spring.io/">https://start.spring.io</a><br>添加 JDBC API 和 H2 Database 依赖。</p>
+<h1 id="创建-Customer-对象"><a href="#创建-Customer-对象" class="headerlink" title="创建 Customer 对象"></a>创建 Customer 对象</h1><p>一个简单的数据访问逻辑，你需要管理用户的姓和名。为了在应用层表示这些数据，创建 Customer 类，代码如下 <code>src/main/java/com/example/relationaldataaccess/Customer.java</code> :</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.relationaldataaccess;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Customer</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="type">long</span> id;</span><br><span class="line">  <span class="keyword">private</span> String firstName, lastName;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">Customer</span><span class="params">(<span class="type">long</span> id, String firstName, String lastName)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.id = id;</span><br><span class="line">    <span class="built_in">this</span>.firstName = firstName;</span><br><span class="line">    <span class="built_in">this</span>.lastName = lastName;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> String.format(</span><br><span class="line">        <span class="string">&quot;Customer[id=%d, firstName=&#x27;%s&#x27;, lastName=&#x27;%s&#x27;]&quot;</span>,</span><br><span class="line">        id, firstName, lastName);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// getters &amp; setters omitted for brevity</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="存储和取回数据"><a href="#存储和取回数据" class="headerlink" title="存储和取回数据"></a>存储和取回数据</h1><p>Spring 提供了一个模版类 JdbcTemplate 来简化 SQL 关系数据库和 JDBC 的交互。</p>
+<p>大多数 JDBC 代码都陷入资源获取、连接管理、异常处理和一般错误检查中，这与代码的预期目标完全无关。JdbcTemplate 让你无需再去关心这些和你的业务无关的任务。你只需关注你手头的任务即可。下面的代码 <code>src/main/java/com/example/relationaldataaccess/RelationalDataAccessApplication.java</code> 展示了使用 JDBC 存储和取回数据的类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.relationaldataaccess;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.CommandLineRunner;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.jdbc.core.JdbcTemplate;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Collectors;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RelationalDataAccessApplication</span> <span class="keyword">implements</span> <span class="title class_">CommandLineRunner</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Logger</span> <span class="variable">log</span> <span class="operator">=</span> LoggerFactory.getLogger(RelationalDataAccessApplication.class);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> &#123;</span><br><span class="line">    SpringApplication.run(RelationalDataAccessApplication.class, args);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Autowired</span></span><br><span class="line">  JdbcTemplate jdbcTemplate;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">(String... strings)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line"></span><br><span class="line">    log.info(<span class="string">&quot;Creating tables&quot;</span>);</span><br><span class="line"></span><br><span class="line">    jdbcTemplate.execute(<span class="string">&quot;DROP TABLE customers IF EXISTS&quot;</span>);</span><br><span class="line">    jdbcTemplate.execute(<span class="string">&quot;CREATE TABLE customers(&quot;</span> +</span><br><span class="line">        <span class="string">&quot;id SERIAL, first_name VARCHAR(255), last_name VARCHAR(255))&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Split up the array of whole names into an array of first/last names</span></span><br><span class="line">    List&lt;Object[]&gt; splitUpNames = Arrays.asList(<span class="string">&quot;John Woo&quot;</span>, <span class="string">&quot;Jeff Dean&quot;</span>, <span class="string">&quot;Josh Bloch&quot;</span>, <span class="string">&quot;Josh Long&quot;</span>).stream()</span><br><span class="line">        .map(name -&gt; name.split(<span class="string">&quot; &quot;</span>))</span><br><span class="line">        .collect(Collectors.toList());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Use a Java 8 stream to print out each tuple of the list</span></span><br><span class="line">    splitUpNames.forEach(name -&gt; log.info(String.format(<span class="string">&quot;Inserting customer record for %s %s&quot;</span>, name[<span class="number">0</span>], name[<span class="number">1</span>])));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Uses JdbcTemplate&#x27;s batchUpdate operation to bulk load data</span></span><br><span class="line">    jdbcTemplate.batchUpdate(<span class="string">&quot;INSERT INTO customers(first_name, last_name) VALUES (?,?)&quot;</span>, splitUpNames);</span><br><span class="line"></span><br><span class="line">    log.info(<span class="string">&quot;Querying for customer records where first_name = &#x27;Josh&#x27;:&quot;</span>);</span><br><span class="line">    jdbcTemplate.query(</span><br><span class="line">        <span class="string">&quot;SELECT id, first_name, last_name FROM customers WHERE first_name = ?&quot;</span>, <span class="keyword">new</span> <span class="title class_">Object</span>[] &#123; <span class="string">&quot;Josh&quot;</span> &#125;,</span><br><span class="line">        (rs, rowNum) -&gt; <span class="keyword">new</span> <span class="title class_">Customer</span>(rs.getLong(<span class="string">&quot;id&quot;</span>), rs.getString(<span class="string">&quot;first_name&quot;</span>), rs.getString(<span class="string">&quot;last_name&quot;</span>))</span><br><span class="line">    ).forEach(customer -&gt; log.info(customer.toString()));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Spring Boot 支持 H2（一个内存关系数据库引擎）并自动创建一个连接。因为使用了 spring-jdbc，Spring Boot 自动创建 JdbcTemplate，@Autowired JdbcTemplate 域会自动加载并使其可用。</p>
+<p>Application 类 实现了 Spring Boot’s 的 CommandLineRunner 接口，意味着 run() 方法会在 application 上下文加载后运行。</p>
+<p>首先，使用 JdbcTemplate 的 execute 方法执行一些 DDL 语句。</p>
+<p>其次，将一个字符列表用 Java 8 的 streams 按 firstname&#x2F;lastname 对分割成 Java 数组，列表中每一项生成一个数组，最后集合成一个对象数组列表。</p>
+<blockquote>
+<p>单个插入语句，使用 insert 即可，多个插入语句，最好使用 batchUpdate<br>使用 ? 来作为占位绑定变量到 SQL 语句，而不直接使用字符串拼接，可以避免 SQL 注入攻击。</p>
+</blockquote>
+<p>最后，使用 query 方法在表中搜索匹配的记录。再次使用 ? 来占位，调用时传递实际的值到其中。最后一个参数时 Java 8 的 lambda 语句，用来转换每个结果行为一个新的 Customer 对象。</p>
+<blockquote>
+<p>Java 8 lambda 对单个方法接口的映射很不错，如 Spring 的 RowMapper。如果使用的是 Java 7 或者更早版本，可以用一个匿名接口实现来实现。</p>
+</blockquote>
+<h1 id="构建一个可执行的-JAR"><a href="#构建一个可执行的-JAR" class="headerlink" title="构建一个可执行的 JAR"></a>构建一个可执行的 JAR</h1><h2 id="使用-Gradle"><a href="#使用-Gradle" class="headerlink" title="使用 Gradle"></a>使用 Gradle</h2><ul>
+<li>直接运行 <code>./gradlew bootRun</code></li>
+<li>构建 JAR 文件 <code>./gradlew build</code></li>
+</ul>
+<h2 id="使用-Maven"><a href="#使用-Maven" class="headerlink" title="使用 Maven"></a>使用 Maven</h2><ul>
+<li>直接运行 <code>./mvnw spring-boot:run</code></li>
+<li>构建 JAR 文件 <code>./mvnw clean package</code></li>
+</ul>
+<h2 id="运行-JAR"><a href="#运行-JAR" class="headerlink" title="运行 JAR"></a>运行 JAR</h2><p><code>java -jar target/gs-relational-data-access-0.1.0.jar</code></p>
+<p>输出如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">2022-12-02 21:15:50.835  INFO 78029 --- [           main] c.e.r.RelationalDataAccessApplication    : Creating tables</span><br><span class="line">2022-12-02 21:15:50.836  INFO 78029 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...</span><br><span class="line">2022-12-02 21:15:50.944  INFO 78029 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.</span><br><span class="line">2022-12-02 21:15:50.958  INFO 78029 --- [           main] c.e.r.RelationalDataAccessApplication    : Inserting customer record for John Woo</span><br><span class="line">2022-12-02 21:15:50.958  INFO 78029 --- [           main] c.e.r.RelationalDataAccessApplication    : Inserting customer record for Jeff Dean</span><br><span class="line">2022-12-02 21:15:50.958  INFO 78029 --- [           main] c.e.r.RelationalDataAccessApplication    : Inserting customer record for Josh Bloch</span><br><span class="line">2022-12-02 21:15:50.958  INFO 78029 --- [           main] c.e.r.RelationalDataAccessApplication    : Inserting customer record for Josh Long</span><br><span class="line">2022-12-02 21:15:50.998  INFO 78029 --- [           main] c.e.r.RelationalDataAccessApplication    : Querying for customer records where first_name = &#x27;Josh&#x27;:</span><br><span class="line">2022-12-02 21:15:51.010  INFO 78029 --- [           main] c.e.r.RelationalDataAccessApplication    : Customer[id=3, firstName=&#x27;Josh&#x27;, lastName=&#x27;Bloch&#x27;]</span><br><span class="line">2022-12-02 21:15:51.010  INFO 78029 --- [           main] c.e.r.RelationalDataAccessApplication    : Customer[id=4, firstName=&#x27;Josh&#x27;, lastName=&#x27;Long&#x27;]</span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://xiaosong97.github.io/2022/12/02/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/Spring-%E5%80%9F%E5%8A%A9Spring%E4%BD%BF%E7%94%A8JDBC%E8%AE%BF%E9%97%AE%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2022/12/02/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/Spring-%E4%BD%BF%E7%94%A8Maven%E6%9E%84%E5%BB%BAJava%E9%A1%B9%E7%9B%AE/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Spring-使用Maven构建Java项目</div>
+      </a>
+    
+  </nav>
+
+  
+   
+    
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2022
+        <i class="ri-heart-fill heart_icon"></i> qusong
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="以码入道"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/Learn">学之</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/Think">思之</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/Do">行之</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

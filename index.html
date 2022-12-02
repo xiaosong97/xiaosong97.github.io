@@ -151,6 +151,207 @@
     
     
     <article
+  id="post-02-实操记录/Spring-借助Spring使用JDBC访问关系数据库"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/12/02/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/Spring-%E5%80%9F%E5%8A%A9Spring%E4%BD%BF%E7%94%A8JDBC%E8%AE%BF%E9%97%AE%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/"
+    >Spring-借助Spring使用JDBC访问关系数据库</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/12/02/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/Spring-%E5%80%9F%E5%8A%A9Spring%E4%BD%BF%E7%94%A8JDBC%E8%AE%BF%E9%97%AE%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
+  <time datetime="2022-12-02T12:34:45.000Z" itemprop="datePublished">2022-12-02</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Do/">Do</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>构建一个应用程序，使用 Spring 的 JdbcTemplate 来访问存储在关系数据库中的数据。</p>
+<h1 id="Spring-initializr-配置"><a href="#Spring-initializr-配置" class="headerlink" title="Spring initializr 配置"></a>Spring initializr 配置</h1><p><a target="_blank" rel="noopener" href="https://start.spring.io/">https://start.spring.io</a><br>添加 JDBC API 和 H2 Database 依赖。</p>
+<h1 id="创建-Customer-对象"><a href="#创建-Customer-对象" class="headerlink" title="创建 Customer 对象"></a>创建 Customer 对象</h1><p>一个简单的数据访问逻辑，你需要管理用户的姓和名。为了在应用层表示这些数据，创建 Customer 类，代码如下 <code>src/main/java/com/example/relationaldataaccess/Customer.java</code> :</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.relationaldataaccess;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Customer</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="type">long</span> id;</span><br><span class="line">  <span class="keyword">private</span> String firstName, lastName;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">Customer</span><span class="params">(<span class="type">long</span> id, String firstName, String lastName)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.id = id;</span><br><span class="line">    <span class="built_in">this</span>.firstName = firstName;</span><br><span class="line">    <span class="built_in">this</span>.lastName = lastName;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> String.format(</span><br><span class="line">        <span class="string">&quot;Customer[id=%d, firstName=&#x27;%s&#x27;, lastName=&#x27;%s&#x27;]&quot;</span>,</span><br><span class="line">        id, firstName, lastName);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// getters &amp; setters omitted for brevity</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="存储和取回数据"><a href="#存储和取回数据" class="headerlink" title="存储和取回数据"></a>存储和取回数据</h1><p>Spring 提供了一个模版类 JdbcTemplate 来简化 SQL 关系数据库和 JDBC 的交互。</p>
+<p>大多数 JDBC 代码都陷入资源获取、连接管理、异常处理和一般错误检查中，这与代码的预期目标完全无关。JdbcTemplate 让你无需再去关心这些和你的业务无关的任务。你只需关注你手头的任务即可。下面的代码 <code>src/main/java/com/example/relationaldataaccess/RelationalDataAccessApplication.java</code> 展示了使用 JDBC 存储和取回数据的类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.relationaldataaccess;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.CommandLineRunner;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.jdbc.core.JdbcTemplate;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Collectors;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RelationalDataAccessApplication</span> <span class="keyword">implements</span> <span class="title class_">CommandLineRunner</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Logger</span> <span class="variable">log</span> <span class="operator">=</span> LoggerFactory.getLogger(RelationalDataAccessApplication.class);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> &#123;</span><br><span class="line">    SpringApplication.run(RelationalDataAccessApplication.class, args);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Autowired</span></span><br><span class="line">  JdbcTemplate jdbcTemplate;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">(String... strings)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line"></span><br><span class="line">    log.info(<span class="string">&quot;Creating tables&quot;</span>);</span><br><span class="line"></span><br><span class="line">    jdbcTemplate.execute(<span class="string">&quot;DROP TABLE customers IF EXISTS&quot;</span>);</span><br><span class="line">    jdbcTemplate.execute(<span class="string">&quot;CREATE TABLE customers(&quot;</span> +</span><br><span class="line">        <span class="string">&quot;id SERIAL, first_name VARCHAR(255), last_name VARCHAR(255))&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Split up the array of whole names into an array of first/last names</span></span><br><span class="line">    List&lt;Object[]&gt; splitUpNames = Arrays.asList(<span class="string">&quot;John Woo&quot;</span>, <span class="string">&quot;Jeff Dean&quot;</span>, <span class="string">&quot;Josh Bloch&quot;</span>, <span class="string">&quot;Josh Long&quot;</span>).stream()</span><br><span class="line">        .map(name -&gt; name.split(<span class="string">&quot; &quot;</span>))</span><br><span class="line">        .collect(Collectors.toList());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Use a Java 8 stream to print out each tuple of the list</span></span><br><span class="line">    splitUpNames.forEach(name -&gt; log.info(String.format(<span class="string">&quot;Inserting customer record for %s %s&quot;</span>, name[<span class="number">0</span>], name[<span class="number">1</span>])));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Uses JdbcTemplate&#x27;s batchUpdate operation to bulk load data</span></span><br><span class="line">    jdbcTemplate.batchUpdate(<span class="string">&quot;INSERT INTO customers(first_name, last_name) VALUES (?,?)&quot;</span>, splitUpNames);</span><br><span class="line"></span><br><span class="line">    log.info(<span class="string">&quot;Querying for customer records where first_name = &#x27;Josh&#x27;:&quot;</span>);</span><br><span class="line">    jdbcTemplate.query(</span><br><span class="line">        <span class="string">&quot;SELECT id, first_name, last_name FROM customers WHERE first_name = ?&quot;</span>, <span class="keyword">new</span> <span class="title class_">Object</span>[] &#123; <span class="string">&quot;Josh&quot;</span> &#125;,</span><br><span class="line">        (rs, rowNum) -&gt; <span class="keyword">new</span> <span class="title class_">Customer</span>(rs.getLong(<span class="string">&quot;id&quot;</span>), rs.getString(<span class="string">&quot;first_name&quot;</span>), rs.getString(<span class="string">&quot;last_name&quot;</span>))</span><br><span class="line">    ).forEach(customer -&gt; log.info(customer.toString()));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Spring Boot 支持 H2（一个内存关系数据库引擎）并自动创建一个连接。因为使用了 spring-jdbc，Spring Boot 自动创建 JdbcTemplate，@Autowired JdbcTemplate 域会自动加载并使其可用。</p>
+<p>Application 类 实现了 Spring Boot’s 的 CommandLineRunner 接口，意味着 run() 方法会在 application 上下文加载后运行。</p>
+<p>首先，使用 JdbcTemplate 的 execute 方法执行一些 DDL 语句。</p>
+<p>其次，将一个字符列表用 Java 8 的 streams 按 firstname&#x2F;lastname 对分割成 Java 数组，列表中每一项生成一个数组，最后集合成一个对象数组列表。</p>
+<blockquote>
+<p>单个插入语句，使用 insert 即可，多个插入语句，最好使用 batchUpdate<br>使用 ? 来作为占位绑定变量到 SQL 语句，而不直接使用字符串拼接，可以避免 SQL 注入攻击。</p>
+</blockquote>
+<p>最后，使用 query 方法在表中搜索匹配的记录。再次使用 ? 来占位，调用时传递实际的值到其中。最后一个参数时 Java 8 的 lambda 语句，用来转换每个结果行为一个新的 Customer 对象。</p>
+<blockquote>
+<p>Java 8 lambda 对单个方法接口的映射很不错，如 Spring 的 RowMapper。如果使用的是 Java 7 或者更早版本，可以用一个匿名接口实现来实现。</p>
+</blockquote>
+<h1 id="构建一个可执行的-JAR"><a href="#构建一个可执行的-JAR" class="headerlink" title="构建一个可执行的 JAR"></a>构建一个可执行的 JAR</h1><h2 id="使用-Gradle"><a href="#使用-Gradle" class="headerlink" title="使用 Gradle"></a>使用 Gradle</h2><ul>
+<li>直接运行 <code>./gradlew bootRun</code></li>
+<li>构建 JAR 文件 <code>./gradlew build</code></li>
+</ul>
+<h2 id="使用-Maven"><a href="#使用-Maven" class="headerlink" title="使用 Maven"></a>使用 Maven</h2><ul>
+<li>直接运行 <code>./mvnw spring-boot:run</code></li>
+<li>构建 JAR 文件 <code>./mvnw clean package</code></li>
+</ul>
+<h2 id="运行-JAR"><a href="#运行-JAR" class="headerlink" title="运行 JAR"></a>运行 JAR</h2><p><code>java -jar target/gs-relational-data-access-0.1.0.jar</code></p>
+<p>输出如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">2022-12-02 21:15:50.835  INFO 78029 --- [           main] c.e.r.RelationalDataAccessApplication    : Creating tables</span><br><span class="line">2022-12-02 21:15:50.836  INFO 78029 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...</span><br><span class="line">2022-12-02 21:15:50.944  INFO 78029 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.</span><br><span class="line">2022-12-02 21:15:50.958  INFO 78029 --- [           main] c.e.r.RelationalDataAccessApplication    : Inserting customer record for John Woo</span><br><span class="line">2022-12-02 21:15:50.958  INFO 78029 --- [           main] c.e.r.RelationalDataAccessApplication    : Inserting customer record for Jeff Dean</span><br><span class="line">2022-12-02 21:15:50.958  INFO 78029 --- [           main] c.e.r.RelationalDataAccessApplication    : Inserting customer record for Josh Bloch</span><br><span class="line">2022-12-02 21:15:50.958  INFO 78029 --- [           main] c.e.r.RelationalDataAccessApplication    : Inserting customer record for Josh Long</span><br><span class="line">2022-12-02 21:15:50.998  INFO 78029 --- [           main] c.e.r.RelationalDataAccessApplication    : Querying for customer records where first_name = &#x27;Josh&#x27;:</span><br><span class="line">2022-12-02 21:15:51.010  INFO 78029 --- [           main] c.e.r.RelationalDataAccessApplication    : Customer[id=3, firstName=&#x27;Josh&#x27;, lastName=&#x27;Bloch&#x27;]</span><br><span class="line">2022-12-02 21:15:51.010  INFO 78029 --- [           main] c.e.r.RelationalDataAccessApplication    : Customer[id=4, firstName=&#x27;Josh&#x27;, lastName=&#x27;Long&#x27;]</span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-02-实操记录/Spring-使用Maven构建Java项目"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/12/02/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/Spring-%E4%BD%BF%E7%94%A8Maven%E6%9E%84%E5%BB%BAJava%E9%A1%B9%E7%9B%AE/"
+    >Spring-使用Maven构建Java项目</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/12/02/02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/Spring-%E4%BD%BF%E7%94%A8Maven%E6%9E%84%E5%BB%BAJava%E9%A1%B9%E7%9B%AE/" class="article-date">
+  <time datetime="2022-12-02T08:29:10.000Z" itemprop="datePublished">2022-12-02</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Do/">Do</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>创建一个提供一天中的时间都应用程序，并使用 Maven 进行构建。</p>
+<h1 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h1><p>首先，需要创建一个 Java 项目，来提供给 Maven 进行构建。为了确保注意力集中在 Maven 上，尽可能确保项目足够简单。在你所选择的项目根目录中创建如下目录结构。</p>
+<h2 id="创建目录结构"><a href="#创建目录结构" class="headerlink" title="创建目录结构"></a>创建目录结构</h2><p>在你所选择的项目根目录中创建如下目录结构，如，使用命令 <code>mkdir -p src/main/java/hello</code> 创建：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">└── src</span><br><span class="line">    └── main</span><br><span class="line">        └── java</span><br><span class="line">            └── hello</span><br></pre></td></tr></table></figure>
+<p>在 src&#x2F;main&#x2F;java&#x2F;hello 目录中，你可以创建任意 Java 类。为了保持和其余指南的一致性，这里创建两个类文件：HelloWorld.java 和 Greeter.java  </p>
+<p><code>src/main/java/hello/HelloWorld.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">Greeter</span> <span class="variable">greeter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Greeter</span>();</span><br><span class="line">    System.out.println(greeter.sayHello());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>src/main/java/hello/Greeter.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Greeter</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> String <span class="title function_">sayHello</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Hello world!&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>安装 maven 可以从 <a target="_blank" rel="noopener" href="https://maven.apache.org/download.cgi">https://maven.apache.org/download.cgi</a> 下载一个 zip 压缩文件，只需要下载二进制文件即可，所以可以在下载列表中类似 apache-maven-{version}-bin.zip or apache-maven-{version}-bin.tar.gz 的文件进行下载。</p>
+<p>下载后，解压压缩文件，然后将其中的 bin 目录添加到 PATH 中即可。</p>
+<p>测试 maven 安装到命令：<code>mvn -v</code></p>
+<h1 id="定义一个简单的-Maven-构建"><a href="#定义一个简单的-Maven-构建" class="headerlink" title="定义一个简单的 Maven 构建"></a>定义一个简单的 Maven 构建</h1><p>Maven 项目是用一个 pom.xml 的 XML 文件定义的。该文件给出了项目名称，版本以及所有需要的外部依赖库。</p>
+<p>因此，进行项目根目录，创建 pom.xml 文件。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>gs-maven<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-shade-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">phase</span>&gt;</span>package<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">goal</span>&gt;</span>shade<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">transformers</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">transformer</span></span></span><br><span class="line"><span class="tag">                                    <span class="attr">implementation</span>=<span class="string">&quot;org.apache.maven.plugins.shade.resource.ManifestResourceTransformer&quot;</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>hello.HelloWorld<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;/<span class="name">transformer</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">transformers</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>除了可选的<packaging>标签外，上面基本上是一个最简单的可用来构建 Java 项目的 pom.xml，主要包含了一下几个配置项：  </p>
+<ul>
+<li><modelVersion> POM 模型版本（总是 4.0.0）</li>
+<li><groupId> 项目所属的组织或机构，通常用一个倒置的域名表示。</li>
+<li><artifactId> 项目的库构件的名称（例如，JAR或WAR文件的名称）</li>
+<li><version> 项目构建时的版本</li>
+<li><packaging> 项目应被如何打包，默认为 jar 也就是打包为 JAR 文件，设置为 war 则表示打包为 WAR 文件。</li>
+</ul>
+<blockquote>
+<p>注：这里的版本使用的是 Semantic Versioning 的规范。<br>Given a version number MAJOR.MINOR.PATCH, increment the:</p>
+<ol>
+<li>MAJOR version when you make incompatible API changes</li>
+<li>MINOR version when you add functionality in a backwards compatible manner</li>
+<li>PATCH version when you make backwards compatible bug fixes<br><br>Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.</li>
+</ol>
+</blockquote>
+<h1 id="构建-Java-代码"><a href="#构建-Java-代码" class="headerlink" title="构建 Java 代码"></a>构建 Java 代码</h1><p>尝试构建，可以使用下面的命令<br><code>mvn compile</code></p>
+<p>该命令会运行 Maven 来对 Java 代码进行编译，最终得到 classes 文件</p>
+<p><code>mvn package</code> 命令则会编译并打包，最终生成一个可执行的 jar 文件。</p>
+<p>Maven 还会维护一个本地依赖库（一般在一个用户home目录下的 .m2&#x2F;repository 文件夹中）来为项目依赖提供快速的访问。如果你想要把你项目 JAR 文件安装到本地依赖库中，可以使用 <code>mvn install</code> 命令。</p>
+<p>该命令会将你的项目代码编译、测试、打包，然后复制到本地依赖仓库中，留给以后别的项目作为依赖来引用。</p>
+<h1 id="定义依赖"><a href="#定义依赖" class="headerlink" title="定义依赖"></a>定义依赖</h1><p>添加 Joda Time 库用来打印当前日期和时间。<br>首先，修改 HelloWorld.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.joda.time.LocalTime;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">LocalTime</span> <span class="variable">currentTime</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">LocalTime</span>();</span><br><span class="line">    System.out.println(<span class="string">&quot;The current local time is: &quot;</span> + currentTime);</span><br><span class="line">    <span class="type">Greeter</span> <span class="variable">greeter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Greeter</span>();</span><br><span class="line">    System.out.println(greeter.sayHello());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 pom.xml 中添加依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>joda-time<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>joda-time<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>该 XML 代码块定义了一个这个项目的依赖列表，列表中定义了一个 Joda Time 库的依赖。</p>
+<p>在 <dependency> 元素中，依赖的定义由三个子元素组成：</p>
+<ol>
+<li><groupId> - 依赖所属组织或机构</li>
+<li><artifactId> - 需要的库</li>
+<li><version> - 需要的库的版本</li>
+</ol>
+<p>默认所有的依赖都是被看作 compile 依赖的。也就是说，这些依赖应该在编译期间可用（如果你正在构建的是 WAR 文件，包含在 WAR 包的 &#x2F;WEB-INF&#x2F;libs 目录）。</p>
+<p>另外，你可以指定 <scope> 元素来指定以下作用域：  </p>
+<ul>
+<li>provided - 编译项目代码时需要的依赖，但是将会被容器在运行代码时提供。（如 Java Servlet API）</li>
+<li>test - 编译和运行测试时需要使用的依赖，但不会在构建或者运行项目运行时代码时需要。</li>
+</ul>
+<p>现在，如果你使用 <code>mvn compile</code> 或 <code>mvn package</code> 命令，Maven 应该会从 Maven 中央仓库中找到 Joda Time 依赖并成功构建项目。</p>
+<h1 id="编写测试"><a href="#编写测试" class="headerlink" title="编写测试"></a>编写测试</h1><p>首先添加 JUnit 依赖，在 pom.xml 中添加:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后编写测试文件 <code>src/test/java/hello/GreeterTest.java</code>  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.hamcrest.CoreMatchers.containsString;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GreeterTest</span> &#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">private</span> <span class="type">Greeter</span> <span class="variable">greeter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Greeter</span>();</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Test</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">greeterSaysHello</span><span class="params">()</span> &#123;</span><br><span class="line">    assertThat(greeter.sayHello(), containsString(<span class="string">&quot;Hello&quot;</span>));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Maven 使用一个叫做 “surefire” 的插件来运行单元测试。该插件的默认配置会编译并运行 src&#x2F;test&#x2F;java 文件夹内所有文件名匹配 *Test 的类文件。你可以使用 <code>mvn test</code> 命令来运行该测试，或者使用 mvn install （test 包含在 install 会进行的所有操作中）</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/" rel="tag">Maven</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-02-实操记录/Spring-使用Gradle构建Java项目"
   class="article article-type-post"
   itemscope
@@ -586,12 +787,12 @@
 <li><a target="_blank" rel="noopener" href="https://spring.io/guides/gs/gradle/">使用 Gradle 构建 Java 项目</a>: 学习如何使用 Gradle 构建 Java 项目。<a href="../02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/Spring-%E4%BD%BF%E7%94%A8Gradle%E6%9E%84%E5%BB%BAJava%E9%A1%B9%E7%9B%AE.md">记录页面</a></li>
 </ol>
 </li>
-<li><input disabled="" type="checkbox"> <ol start="5">
-<li><a target="_blank" rel="noopener" href="https://spring.io/guides/gs/maven/">使用 Maven 构建 Java 项目</a>: 学习如何使用 Maven 构建 Java 项目。</li>
+<li><input checked="" disabled="" type="checkbox"> <ol start="5">
+<li><a target="_blank" rel="noopener" href="https://spring.io/guides/gs/maven/">使用 Maven 构建 Java 项目</a>: 学习如何使用 Maven 构建 Java 项目。<a href="../02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/Spring-%E4%BD%BF%E7%94%A8Maven%E6%9E%84%E5%BB%BAJava%E9%A1%B9%E7%9B%AE.md">记录页面</a></li>
 </ol>
 </li>
-<li><input disabled="" type="checkbox"> <ol start="6">
-<li><a target="_blank" rel="noopener" href="https://spring.io/guides/gs/relational-data-access/">借助 Spring 使用 JDBC 访问关系数据库</a>: 学习如何使用 Spring 访问关系数据库。</li>
+<li><input checked="" disabled="" type="checkbox"> <ol start="6">
+<li><a target="_blank" rel="noopener" href="https://spring.io/guides/gs/relational-data-access/">借助 Spring 使用 JDBC 访问关系数据库</a>: 学习如何使用 Spring 访问关系数据库。<a href="../02-%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95/Spring-%E5%80%9F%E5%8A%A9Spring%E4%BD%BF%E7%94%A8JDBC%E8%AE%BF%E9%97%AE%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93.md">记录页面</a></li>
 </ol>
 </li>
 <li><input disabled="" type="checkbox"> <ol start="7">
@@ -1413,150 +1614,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IO/" rel="tag">IO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-04-记录备忘/待办事项"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/11/19/04-%E8%AE%B0%E5%BD%95%E5%A4%87%E5%BF%98/%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9/"
-    >待办事项</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/11/19/04-%E8%AE%B0%E5%BD%95%E5%A4%87%E5%BF%98/%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9/" class="article-date">
-  <time datetime="2022-11-19T05:39:27.000Z" itemprop="datePublished">2022-11-19</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Learn/">Learn</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="待办事项"><a href="#待办事项" class="headerlink" title="待办事项"></a>待办事项</h1><ul>
-<li><input disabled="" type="checkbox"> 完善未完成的文档</li>
-</ul>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E5%88%92/" rel="tag">计划</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-01-学习笔记/Mac 下修改 brew 源"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/11/19/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Mac%20%E4%B8%8B%E4%BF%AE%E6%94%B9%20brew%20%E6%BA%90/"
-    >Mac 下修改 brew 源</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/11/19/01-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Mac%20%E4%B8%8B%E4%BF%AE%E6%94%B9%20brew%20%E6%BA%90/" class="article-date">
-  <time datetime="2022-11-19T05:01:14.000Z" itemprop="datePublished">2022-11-19</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Learn/">Learn</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>原文链接：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1614039">https://cloud.tencent.com/developer/article/1614039</a></p>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Homebrew 是一款自由及开放源代码的软件包管理系统，用以简化 macOS 和 linux 系统上的软件安装过程。它拥有安装、卸载、更新、查看、搜索等很多实用的功能，通过简单的一条指令，就可以实现包管理，十分方便快捷。</p>
-
-<p>Homebrew 主要有四个部分组成: brew、homebrew-core 、homebrew-bottles、homebrew-cask。</p>
-
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>brew</td>
-<td>Homebrew 源代码仓库</td>
-</tr>
-<tr>
-<td>homebrew-core</td>
-<td>Homebrew 核心软件仓库</td>
-</tr>
-<tr>
-<td>homebrew-bottles</td>
-<td>Homebrew 预编译二进制软件包</td>
-</tr>
-<tr>
-<td>homebrew-cask</td>
-<td>提供 macOS 应用和大型二进制文件</td>
-</tr>
-</tbody></table>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看 brew.git 当前源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> &amp;&amp; git remote -v</span></span><br><span class="line">origin    https://github.com/Homebrew/brew.git (fetch)</span><br><span class="line">origin    https://github.com/Homebrew/brew.git (push)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看 homebrew-core.git 当前源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> &amp;&amp; git remote -v</span></span><br><span class="line">origin    https://github.com/Homebrew/homebrew-core.git (fetch)</span><br><span class="line">origin    https://github.com/Homebrew/homebrew-core.git (push)</span><br></pre></td></tr></table></figure>
-<h1 id="替换为阿里源"><a href="#替换为阿里源" class="headerlink" title="替换为阿里源"></a>替换为阿里源</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">修改 brew.git 为阿里源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://mirrors.aliyun.com/homebrew/brew.git</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">修改 homebrew-core.git 为阿里源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://mirrors.aliyun.com/homebrew/homebrew-core.git</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">zsh 替换 brew bintray 镜像</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles&#x27;</span> &gt;&gt; ~/.zshrc</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">source</span> ~/.zshrc</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">bash 替换 brew bintray 镜像</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles&#x27;</span> &gt;&gt; ~/.bash_profile</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">source</span> ~/.bash_profile</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">刷新源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">brew update</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="替换为清华源"><a href="#替换为清华源" class="headerlink" title="替换为清华源"></a>替换为清华源</h1><figure class="highlight plaintext"><figcaption><span>替换各个源</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ git -C &quot;$(brew --repo)&quot; remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git</span><br><span class="line">$ git -C &quot;$(brew --repo homebrew/core)&quot; remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git</span><br><span class="line">$ git -C &quot;$(brew --repo homebrew/cask)&quot; remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git</span><br><span class="line"></span><br><span class="line"># zsh 替换 brew bintray 镜像</span><br><span class="line">$ echo &#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles&#x27; &gt;&gt; ~/.zshrc</span><br><span class="line">$ source ~/.zshrc</span><br><span class="line"></span><br><span class="line"># bash 替换 brew bintray 镜像</span><br><span class="line">$ echo &#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles&#x27; &gt;&gt; ~/.bash_profile</span><br><span class="line">$ source ~/.bash_profile</span><br><span class="line"></span><br><span class="line"># 刷新源</span><br><span class="line">$ brew update</span><br></pre></td></tr></table></figure>
-
-<h1 id="替换为中科大源"><a href="#替换为中科大源" class="headerlink" title="替换为中科大源"></a>替换为中科大源</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">替换各个源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://mirrors.ustc.edu.cn/brew.git</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/cask)</span>&quot;</span> remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">zsh 替换 brew bintray 镜像</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles&#x27;</span> &gt;&gt; ~/.zshrc</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">source</span> ~/.zshrc</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">bash 替换 brew bintray 镜像</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles&#x27;</span> &gt;&gt; ~/.bash_profile</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">source</span> ~/.bash_profile</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">刷新源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">brew update</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="重置为官方源"><a href="#重置为官方源" class="headerlink" title="重置为官方源"></a>重置为官方源</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重置 brew.git 为官方源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/brew.git</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重置 homebrew-core.git 为官方源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/homebrew-core.git</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重置 homebrew-cask.git 为官方源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/cask)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/homebrew-cask</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">zsh 注释掉 HOMEBREW_BOTTLE_DOMAIN 配置</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">vi ~/.zshrc</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">export</span> HOMEBREW_BOTTLE_DOMAIN=xxxxxxxxx</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">bash 注释掉 HOMEBREW_BOTTLE_DOMAIN 配置</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">vi ~/.bash_profile</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">export</span> HOMEBREW_BOTTLE_DOMAIN=xxxxxxxxx</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">刷新源</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">brew update</span></span><br></pre></td></tr></table></figure>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/brew/" rel="tag">brew</a></li></ul>
 
     </footer>
   </div>
